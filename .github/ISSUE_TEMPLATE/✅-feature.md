@@ -1,7 +1,7 @@
 ---
 name: "✅ Feature"
 about: Feature 작업 내용을 작성해주세요.
-title: "#이슈 번호/ 이슈 제목"
+title: "#이슈 번호 이슈 제목"
 labels: ''
 assignees: ''
 
