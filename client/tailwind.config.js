@@ -23,6 +23,7 @@ module.exports = {
         "light-yellow": "#FBF3D5",
         "main-grey": "#F1F2F3",
         "light-grey": "#F6F6F6",
+        "button-blue": "#0074CC",
       },
     },
   },
