@@ -5,7 +5,7 @@ import { RecoilRoot } from "recoil";
 function App() {
   return (
     <RecoilRoot>
-      <div className="container flex items-center justify-center w-full min-h-min">
+      <div className="flex items-center justify-center w-full min-h-min">
         <Router />
       </div>
     </RecoilRoot>
