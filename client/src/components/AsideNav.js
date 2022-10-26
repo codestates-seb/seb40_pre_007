@@ -1,6 +1,6 @@
 export const AsideNav = () => {
   return (
-    <aside className="sticky w-48 sm:block hidden text-font-gray">
+    <aside className="sticky w-48 sm:block hidden text-font-gray border border-r-line-gra border-l-0 border-solid">
       <div className="flex flex-col bg-grey">
         <span className="my-7 pl-3 text-sm text-bold cursor-pointer hover:text-black">
           Home
