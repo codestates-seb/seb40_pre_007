@@ -3,7 +3,7 @@ import Icon from "../assets/Stack_Overflow-Icon.png";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-export default function NavBar() {
+export const NavBar = () => {
   const [isSearchBarClick, setIsSearchBarClick] = useState(false);
 
   const onClickSearchBar = () => {
@@ -108,4 +108,4 @@ export default function NavBar() {
       </div>
     </nav>
   );
-}
+};
