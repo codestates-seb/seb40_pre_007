@@ -14,6 +14,8 @@ module.exports = {
         "main-gray": "#F1F2F3",
         "light-gray": "#F6F6F6",
         "font-gray": "#525960",
+        "main-blue": "#0A95FF",
+        "deep-blue": "#0074CC",
       },
     },
   },
