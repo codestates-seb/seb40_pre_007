@@ -30,7 +30,7 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 
 	//p6spy 적용
-	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.0'
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.8.1'
 }
 
 tasks.named('test') {
