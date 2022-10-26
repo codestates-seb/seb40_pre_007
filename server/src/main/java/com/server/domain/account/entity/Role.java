@@ -1,6 +1,12 @@
 package com.server.domain.account.entity;
 
 public enum Role {
-    USER,
-    ADMIN
+    USER("ROLE_USER"),
+    ADMIN("ROLE_ADMIN");
+
+    private String roleName;
+
+    Role(String roleName) {
+        this.roleName = roleName;
+    }
 }
