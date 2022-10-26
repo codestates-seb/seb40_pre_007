@@ -19,27 +19,27 @@ export const Main = () => {
 
               <span className="inline-flex divide-x divide-dark-gray overflow-hidden rounded-md border border-dark-gray bg-white shadow-sm">
                 <button
-                  className="inline-block p-2 text-gray-700 hover:bg-main-gray focus:relative"
+                  className="inline-block p-2 text-gray-700 hover:bg-main-gray  focus:bg-main-gray"
                   title="Newest Product"
                 >
                   Newest
                 </button>
 
                 <button
-                  className="inline-block p-2 text-gray-700 hover:bg-main-gray  focus:relative"
+                  className="inline-block p-2 text-gray-700 hover:bg-main-gray  focus:bg-main-gray"
                   title="Oldest Product"
                 >
                   Oldest
                 </button>
                 <button
-                  className="inline-block p-2 text-gray-700 hover:bg-main-gray  focus:relative"
+                  className="inline-block p-2 text-gray-700 hover:bg-main-gray  focus:bg-main-gray"
                   title="interest Product"
                 >
                   interest
                 </button>
 
                 <button
-                  className="inline-block p-2 text-gray-700 hover:bg-main-gray  focus:relative"
+                  className="inline-block p-2 text-gray-700 hover:bg-main-gray  focus:bg-main-gray"
                   title="votes Product"
                 >
                   votes
