@@ -26,7 +26,7 @@ public class BoardController {
     }
 
     // 질문 게시글 작성
-    @PostMapping("/write")
+    @PostMapping
     public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto)throws Exception{
 
 
