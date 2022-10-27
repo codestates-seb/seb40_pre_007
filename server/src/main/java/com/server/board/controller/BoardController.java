@@ -50,7 +50,6 @@ public class BoardController {
 //    }
 
     // 단일 질문 게시글 조회
-    // BoardResponseDto boardToBoardResponseDto(Board board)
     @GetMapping("/{board-id}")
     public ResponseEntity getBoard(@PathVariable("board-id") long boardId){
 
