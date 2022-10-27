@@ -1,6 +1,7 @@
 import { AsideNav } from "../../components/AsideNav";
 import { NavBar } from "../../components/NavBar";
 import { Question } from "../../components/Question";
+import { Sidebar } from "../../components/Sidebar";
 
 export const Main = () => {
   return (
@@ -51,7 +52,8 @@ export const Main = () => {
               <Question />
             </ul>
           </div>
-          <aside className="bg-blue-200 w-96 p-6 lg:block hidden">aside</aside>
+          {/* <aside className="bg-blue-200 w-96 p-6 lg:block hidden">aside</aside> */}
+          <Sidebar />
         </div>
       </div>
     </div>
