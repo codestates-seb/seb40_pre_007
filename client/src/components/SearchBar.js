@@ -26,7 +26,7 @@ export const SerchBarMobile = ({ className }) => {
         ></input>
       </form>
       {/* 드롭다운 메뉴 */}
-      <div className="shadow-lg w-full mt-2 py-2 border border-gray-300">
+      <div className="shadow-lg w-full mt-2 py-2 border border-gray-300 bg-white">
         <ul className="space-y-3 px-4 mb-3">
           <li>
             <strong>[tag]</strong>{" "}
@@ -103,7 +103,7 @@ export const SearchBarDesktop = ({ setIsSearchBarClick, isSearchBarClick }) => {
       </form>
       {/* 드롭다운 메뉴 */}
       {isSearchBarClick ? (
-        <div className="shadow-lg w-full mt-2 py-2 absolute top-14 border border-gray-300 rounded-md">
+        <div className="shadow-lg w-full py-2 absolute top-12 border border-gray-300 rounded-md">
           <ul className="space-y-3 px-4 mb-3">
             <li>
               <strong>[tag]</strong>{" "}
