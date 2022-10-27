@@ -1,21 +1,22 @@
-package com.server.global.board.controller;
+package com.server.board.controller;
 
 // import com.server.global.board.dto.BoardPatchDto;
-import com.server.global.board.dto.BoardPostDto;
-import com.server.global.board.entity.Board;
-import com.server.global.board.service.BoardService;
+import com.server.board.dto.BoardPostDto;
+import com.server.board.entity.Board;
+//import com.server.board.response.ErrorResponse;
+import com.server.board.service.BoardService;
+import com.server.board.view.View;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Positive;
-
 import java.util.List;
-
-import static org.springframework.http.HttpStatus.CREATED;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/boards")
@@ -31,7 +32,8 @@ public class BoardController {
 
     // 질문 게시글 작성
     @PostMapping("/write")
-    public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto){
+    public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto)throws Exception{
+
 
         Board board = new Board();
         board.setTitle(boardDto.getTitle());
@@ -40,16 +42,28 @@ public class BoardController {
         Board response = boardService.createBoard(board);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
+
     }
 
-//    // 단일 질문 게시글 조회
-//    @GetMapping("/{board-id}")
-//    public ResponseEntity getBoard(@PathVariable("board-id") long boardId){
-//
-//        Board response = boardService.findBoard(boardId);
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
-//
+    // 단일 게시글 조회수 조회
+    @GetMapping("/{board-id}/views")
+    public Long getViews(@PathVariable("board-id") long boardId){
+
+        View views = new View();
+
+        return views.getCount();
+    }
+
+    // 단일 질문 게시글 조회
+    // BoardResponseDto boardToBoardResponseDto(Board board)
+    @GetMapping("/{board-id}")
+    public ResponseEntity getBoard(@PathVariable("board-id") long boardId){
+
+        Board response = boardService.findBoard(boardId);
+
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
 //    // 전체 질문 게시글 조회
 //    @GetMapping("/question")
 //    public ResponseEntity getBoards(){

@@ -1,8 +1,7 @@
-package com.server.global.board.repository;
+package com.server.board.repository;
 
-import com.server.global.board.entity.Board;
+import com.server.board.entity.Board;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 

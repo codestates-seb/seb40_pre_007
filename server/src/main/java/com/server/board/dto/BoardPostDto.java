@@ -1,4 +1,4 @@
-package com.server.global.board.dto;
+package com.server.board.dto;
 
 import lombok.Getter;
 
@@ -15,6 +15,7 @@ public class BoardPostDto {
 
     // 유저의 로그인 유효성 검증 변수 추가해야함!
 
+
     public String getTitle() {
         return title;
     }
@@ -23,4 +24,11 @@ public class BoardPostDto {
         return content;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
 }

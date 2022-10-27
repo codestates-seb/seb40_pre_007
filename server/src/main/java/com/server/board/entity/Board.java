@@ -1,10 +1,9 @@
-package com.server.global.board.entity;
+package com.server.board.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
 
@@ -16,14 +15,21 @@ public class Board {
     @Id // 데이터베이스 테이블의 BOARD 테이블과 매핑
     @GeneratedValue(strategy = GenerationType.IDENTITY) // IDENTITY 기본 키 생성 전략
     private Long boardId;
+
+    @Column(nullable = false, updatable = true, unique = false)
     private String title;
+
+    @Column(nullable = false, updatable = true, unique = false)
     private String content;
-    private long views;
+
+//    private long views;
 
     @Enumerated(value = EnumType.STRING)
     @Column(length = 20, nullable = false)
     private BoardStatus boardStatus = BoardStatus.BOARD_ACTIVE;
 
+
+    // 추후 status에 대한 논의 필요
     public enum BoardStatus {
         BOARD_ACTIVE("활성중");
 
