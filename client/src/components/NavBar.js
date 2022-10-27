@@ -17,8 +17,8 @@ export const NavBar = () => {
   const onLogout = () => setIsLogin(false);
 
   return (
-    <header className="bg-white fixed w-full flex items-center h-[60px] border-t-4 border-t-orange-400 border-b-gray-200 shadow-md pr-4 lg:justify-center">
-      <div className="flex w-full items-center max-w-7xl h-full">
+    <header className="bg-white fixed w-screen flex items-center h-[60px] border-t-4 border-t-orange-400 border-b-gray-200 shadow-md pr-4 lg:justify-center md:pl-1">
+      <div className="flex w-full items-center max-w-[1450px] h-full">
         {/* Hambergers */}
         <div className="flex justify-center items-center px-4 hover:bg-main-gray h-full cursor-pointer md:hidden">
           <div className="flex flex-col w-[18px] h-[30px] space-y-1 justify-center">

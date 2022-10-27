@@ -72,7 +72,7 @@ export const SerchBarMobile = ({ className }) => {
 
 export const SearchBarDesktop = ({ setIsSearchBarClick, isSearchBarClick }) => {
   return (
-    <div className="hidden md:flex flex-col justify-center w-full mr-2">
+    <div className="hidden md:flex flex-col justify-center w-full mr-2 ">
       <form
         className="flex flex-1 items-center relative"
         onFocus={() => setIsSearchBarClick(true)}
@@ -103,7 +103,7 @@ export const SearchBarDesktop = ({ setIsSearchBarClick, isSearchBarClick }) => {
       </form>
       {/* 드롭다운 메뉴 */}
       {isSearchBarClick ? (
-        <div className="shadow-lg w-full py-2 absolute top-12 border border-gray-300 rounded-md">
+        <div className="shadow-lg w-full py-2 absolute top-16 border border-gray-300 rounded-md bg-white">
           <ul className="space-y-3 px-4 mb-3">
             <li>
               <strong>[tag]</strong>{" "}
