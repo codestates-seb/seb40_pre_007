@@ -1,5 +1,8 @@
 package com.server.global.security.config;
 
+import com.server.global.security.filter.JwtAuthenticationFilter;
+import com.server.global.security.handler.AccountAccessFailureHandler;
+import com.server.global.security.handler.AccountAccessSuccessHandler;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -28,11 +31,15 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
+        AuthenticationManager authenticationManager = authenticationConfiguration.getAuthenticationManager();
         http
                 .csrf().disable()
                 .formLogin().disable()    // formLogin 인증방법 비활성화
                 .httpBasic().disable()    // httpBasic 인증방법 비활성화
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);    // 세션 상태를 유지하지 않음
+
+        http
+                .addFilter(new JwtAuthenticationFilter(authenticationManager));
 
         http
                 .authorizeRequests()
@@ -62,5 +69,17 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
+    }
+
+    @Bean
+    public JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {
+        AuthenticationManager authenticationManager = authenticationConfiguration.getAuthenticationManager();
+
+        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager);
+        jwtAuthenticationFilter.setFilterProcessesUrl("/api/login");
+        jwtAuthenticationFilter.setAuthenticationSuccessHandler(new AccountAccessSuccessHandler());
+        jwtAuthenticationFilter.setAuthenticationFailureHandler(new AccountAccessFailureHandler());
+
+        return jwtAuthenticationFilter;
     }
 }

@@ -21,7 +21,6 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     public JwtAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
-
     }
 
     // json 타입의 데이터로만 로그인을 진행

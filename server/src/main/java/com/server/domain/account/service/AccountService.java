@@ -9,6 +9,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -21,7 +23,7 @@ public class AccountService {
     public Account createAccount(Account account) {
         String encodePassword = PasswordEncoder.encode(account.getPassword());
         account.setPassword(encodePassword);
-        account.setRole(Role.USER);
+        account.setRoleList(List.of(Role.USER));
 
         return accountRepository.save(account);
     }
