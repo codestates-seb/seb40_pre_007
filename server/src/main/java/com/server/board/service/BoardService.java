@@ -4,6 +4,7 @@ import com.server.board.entity.Board;
 import com.server.board.exception.BusinessLogicException;
 import com.server.board.exception.ExceptionCode;
 import com.server.board.repository.BoardRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

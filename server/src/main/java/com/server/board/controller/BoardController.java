@@ -5,6 +5,7 @@ package com.server.board.controller;
 import com.server.board.dto.BoardPostDto;
 import com.server.board.entity.Board;
 import com.server.board.service.BoardService;
+import com.server.domain.account.entity.Account;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -27,11 +28,7 @@ public class BoardController {
     @PostMapping
     public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto)throws Exception{
 
-
-        Board board = new Board();
-        board.setTitle(boardDto.getTitle());
-        board.setContent(boardDto.getContent());
-
+        Board board = boardDto.toBoard();
         Board response = boardService.createBoard(board);
 
         return new ResponseEntity<>(response, HttpStatus.CREATED);
