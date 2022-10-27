@@ -16,7 +16,7 @@ public class Board {
     @GeneratedValue(strategy = GenerationType.IDENTITY) // IDENTITY 기본 키 생성 전략
     private Long boardId;
 
-    @Column(nullable = false, updatable = true, unique = false)
+    @Column(nullable = false, updatable = true, unique = false, length = 100)
     private String title;
 
     @Column(nullable = false, updatable = true, unique = false)
