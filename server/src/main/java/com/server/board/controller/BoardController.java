@@ -1,10 +1,11 @@
 package com.server.board.controller;
 
 // import com.server.global.board.dto.BoardPatchDto;
+
 import com.server.board.dto.BoardPostDto;
 import com.server.board.entity.Board;
-//import com.server.board.response.ErrorResponse;
 import com.server.board.service.BoardService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +18,10 @@ import javax.validation.Valid;
 @RequestMapping("api/boards")
 @Validated
 @Slf4j
+@RequiredArgsConstructor
 public class BoardController {
 
     private final BoardService boardService;
-
-    public BoardController(BoardService boardService){
-        this.boardService = boardService;
-    }
 
     // 질문 게시글 작성
     @PostMapping
