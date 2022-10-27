@@ -7,14 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter @Setter
 @NoArgsConstructor
 @Entity
-@Table(name = "ACCOUNTS")
 public class Account extends BaseTimeEntity {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "account_id")
     private Long id;
 
@@ -33,7 +34,8 @@ public class Account extends BaseTimeEntity {
     private String content;
 
     @Enumerated(EnumType.STRING)
-    private Role role;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<Role> roleList;
 
     public Account(String displayName, String email, String password) {
         this.displayName = displayName;
