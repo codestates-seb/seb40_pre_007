@@ -17,6 +17,8 @@ module.exports = {
         "font-gray": "#525960",
         "main-blue": "#0A95FF",
         "deep-blue": "#0074CC",
+        "line-gray": "#D6D9DC",
+        "dark-gray": "#838C95",
         "button-blue": "#E1ECF4",
         "button-border-blue": "#39739d",
       },
