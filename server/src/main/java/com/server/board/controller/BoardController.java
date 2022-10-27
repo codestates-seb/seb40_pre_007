@@ -5,18 +5,13 @@ import com.server.board.dto.BoardPostDto;
 import com.server.board.entity.Board;
 //import com.server.board.response.ErrorResponse;
 import com.server.board.service.BoardService;
-import com.server.board.view.View;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/boards")
@@ -46,13 +41,13 @@ public class BoardController {
     }
 
     // 단일 게시글 조회수 조회
-    @GetMapping("/{board-id}/views")
-    public Long getViews(@PathVariable("board-id") long boardId){
-
-        View views = new View();
-
-        return views.getCount();
-    }
+//    @GetMapping("/{board-id}/views")
+//    public Long getViews(@PathVariable("board-id") long boardId){
+//
+//        View views = new View();
+//
+//        return views.getCount();
+//    }
 
     // 단일 질문 게시글 조회
     // BoardResponseDto boardToBoardResponseDto(Board board)
