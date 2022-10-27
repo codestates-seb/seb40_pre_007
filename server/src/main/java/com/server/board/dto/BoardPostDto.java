@@ -5,6 +5,7 @@ import lombok.Getter;
 import javax.validation.constraints.NotBlank;
 
 @Getter
+@Setter
 public class BoardPostDto {
 
     @NotBlank(message = "제목을 입력하세요.")
@@ -16,19 +17,4 @@ public class BoardPostDto {
     // 유저의 로그인 유효성 검증 변수 추가해야함!
 
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 }
