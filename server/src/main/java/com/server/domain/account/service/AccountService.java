@@ -5,6 +5,7 @@ import com.server.domain.account.entity.Role;
 import com.server.domain.account.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,11 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class AccountService {
 
     private final AccountRepository accountRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder PasswordEncoder;
 
     @Transactional
     public Account createAccount(Account account) {
-        String encodePassword = bCryptPasswordEncoder.encode(account.getPassword());
+        String encodePassword = PasswordEncoder.encode(account.getPassword());
         account.setPassword(encodePassword);
         account.setRole(Role.USER);
 
