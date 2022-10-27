@@ -22,7 +22,6 @@ public class Board {
     @Column(nullable = false, updatable = true, unique = false)
     private String content;
 
-//    private long views;
 
     @Enumerated(value = EnumType.STRING)
     @Column(length = 20, nullable = false)
