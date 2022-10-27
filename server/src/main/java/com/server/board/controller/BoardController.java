@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("/boards")
+@RequestMapping("api/boards")
 @Validated
 @Slf4j
 public class BoardController {
