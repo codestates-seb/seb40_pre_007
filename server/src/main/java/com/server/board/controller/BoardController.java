@@ -1,9 +1,10 @@
 package com.server.global.board.controller;
 
-import com.server.global.board.dto.BoardPatchDto;
+// import com.server.global.board.dto.BoardPatchDto;
 import com.server.global.board.dto.BoardPostDto;
 import com.server.global.board.entity.Board;
 import com.server.global.board.service.BoardService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -19,6 +20,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 @RestController
 @RequestMapping("/boards")
 @Validated
+@Slf4j
 public class BoardController {
 
     private final BoardService boardService;
@@ -49,7 +51,7 @@ public class BoardController {
 //    }
 //
 //    // 전체 질문 게시글 조회
-//    @GetMapping
+//    @GetMapping("/question")
 //    public ResponseEntity getBoards(){
 //
 //        List<Board> response = boardService.findBoards();

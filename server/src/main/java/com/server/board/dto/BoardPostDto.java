@@ -1,7 +1,10 @@
 package com.server.global.board.dto;
 
+import lombok.Getter;
+
 import javax.validation.constraints.NotBlank;
 
+@Getter
 public class BoardPostDto {
 
     @NotBlank(message = "제목을 입력하세요.")
