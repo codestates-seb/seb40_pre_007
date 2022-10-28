@@ -32,7 +32,6 @@ public class BoardController {
     public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto)throws Exception{
 
         Board board = boardDto.toBoard();
-        board.setContent(boardDto.getContent());
 
         Board response = boardService.createBoard(board);
 
