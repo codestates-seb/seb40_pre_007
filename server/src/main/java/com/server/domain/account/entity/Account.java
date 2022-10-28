@@ -25,7 +25,7 @@ public class Account extends BaseTimeEntity {
     @Column(nullable = false, length = 40, unique = true)
     private String email;
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 100)
     private String password;
 
     @Column(length = 100)

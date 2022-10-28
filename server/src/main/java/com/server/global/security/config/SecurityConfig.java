@@ -1,13 +1,14 @@
 package com.server.global.security.config;
 
 import com.server.global.security.filter.JwtAuthenticationFilter;
-import com.server.global.security.handler.AccountAccessFailureHandler;
-import com.server.global.security.handler.AccountAccessSuccessHandler;
+import com.server.global.security.filter.JwtAuthorizationFilter;
+import com.server.global.security.handler.AccountAccessDeniedHandler;
+import com.server.global.security.handler.AccountAuthenticationEntryPoint;
+import com.server.global.security.util.JwtProcessor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
@@ -15,23 +16,22 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 // Spring Security 를 사용하기 위한 최소한의 보안 구성
+@Slf4j
 @RequiredArgsConstructor
 @EnableWebSecurity
 public class SecurityConfig {
 
+    private final JwtProcessor jwtProcessor;
     private final AuthenticationConfiguration authenticationConfiguration;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
         AuthenticationManager authenticationManager = authenticationConfiguration.getAuthenticationManager();
+
         http
                 .csrf().disable()
                 .formLogin().disable()    // formLogin 인증방법 비활성화
@@ -39,7 +39,8 @@ public class SecurityConfig {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);    // 세션 상태를 유지하지 않음
 
         http
-                .addFilter(new JwtAuthenticationFilter(authenticationManager));
+                .addFilter(new JwtAuthenticationFilter(authenticationManager, jwtProcessor))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager, jwtProcessor));
 
         http
                 .authorizeRequests()
@@ -47,6 +48,11 @@ public class SecurityConfig {
 //                .mvcMatchers(HttpMethod.POST, "/api/login").permitAll()
 //                .anyRequest().authenticated()
                 .anyRequest().permitAll();
+
+        http
+                .exceptionHandling()
+                .accessDeniedHandler(new AccountAccessDeniedHandler())
+                .authenticationEntryPoint(new AccountAuthenticationEntryPoint());
 
         return http.build();
     }
@@ -69,17 +75,5 @@ public class SecurityConfig {
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
-    }
-
-    @Bean
-    public JwtAuthenticationFilter jwtAuthenticationFilter() throws Exception {
-        AuthenticationManager authenticationManager = authenticationConfiguration.getAuthenticationManager();
-
-        JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager);
-        jwtAuthenticationFilter.setFilterProcessesUrl("/api/login");
-        jwtAuthenticationFilter.setAuthenticationSuccessHandler(new AccountAccessSuccessHandler());
-        jwtAuthenticationFilter.setAuthenticationFailureHandler(new AccountAccessFailureHandler());
-
-        return jwtAuthenticationFilter;
     }
 }
