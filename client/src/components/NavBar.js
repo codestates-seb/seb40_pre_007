@@ -5,6 +5,7 @@ import { useState } from "react";
 import { SerchBarMobile, SearchBarDesktop } from "./SearchBar";
 import { makeClassName } from "../libs/makeClassName";
 import { NavBarBtns } from "./NavBarBtns";
+import { SmallBtn } from "./Buttons";
 
 export const NavBar = () => {
   const [isSearchBarClick, setIsSearchBarClick] = useState(false);
@@ -94,23 +95,20 @@ export const NavBar = () => {
         ) : null}
         {/* Btns */}
         {isLogin ? (
-          <div className="flex h-full">
-            <NavBarBtns id="hi" />
-            <button onClick={onLogout} className="text-xs">
-              임시로그아웃
-            </button>
-          </div>
+          <>
+            <div className="flex h-full">
+              <NavBarBtns id="hi" />
+            </div>
+            <SmallBtn bg={"button-blue"} onClick={onLogout}>
+              Log out
+            </SmallBtn>
+          </>
         ) : (
-          <div className="space-x-2 ">
-            <button
-              className="px-3 py-1.5 bg-blue-100 border border-gray-400 rounded-md text-gray-500 hover:bg-blue-200 transition-colors"
-              onClick={onLogin}
-            >
+          <div className="space-x-2 flex">
+            <SmallBtn bg={"button-blue"} onClick={onLogin}>
               Log in
-            </button>
-            <button className="px-3 py-1.5 bg-main-blue border border-gray-400 rounded-md text-white hover:bg-deep-blue transition-colors">
-              Sign up
-            </button>
+            </SmallBtn>
+            <SmallBtn>Sign up</SmallBtn>
           </div>
         )}
       </div>
