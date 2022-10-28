@@ -1,9 +1,9 @@
-package com.server.board.service;
+package com.server.domain.board.service;
 
-import com.server.board.entity.Board;
-import com.server.board.exception.BusinessLogicException;
-import com.server.board.exception.ExceptionCode;
-import com.server.board.repository.BoardRepository;
+import com.server.domain.board.entity.Board;
+import com.server.domain.board.exception.BusinessLogicException;
+import com.server.domain.board.exception.ExceptionCode;
+import com.server.domain.board.repository.BoardRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
