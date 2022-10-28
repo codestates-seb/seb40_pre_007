@@ -1,8 +1,8 @@
 package com.server.domain.board.controller;
 
 // import com.server.global.board.dto.BoardPatchDto;
+import com.server.domain.board.dto.BoardPatchDto;
 import com.server.domain.board.dto.BoardPostDto;
-import com.server.domain.board.dto.BoardResponseDto;
 import com.server.domain.board.entity.Board;
 //import com.server.board.response.ErrorResponse;
 import com.server.domain.board.service.BoardService;
@@ -41,7 +41,7 @@ public class BoardController {
 
     // 단일 질문 게시글 조회
     @GetMapping("/{board-id}")
-    public ResponseEntity getBoard(@PathVariable("board-id") long boardId){
+    public ResponseEntity getBoard(@PathVariable("board-id") @Positive long boardId){
         Board response = boardService.findBoard(boardId);
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
@@ -49,37 +49,35 @@ public class BoardController {
     /// 전체 질문 게시글 조회
     @GetMapping
     public ResponseEntity getBoards(@Positive @RequestParam int page,
-                                    @Positive @RequestParam int size){
+                                    @Positive @RequestParam int size) {
 
-        Page<Board> pageBoards = boardService.findBoards(page-1, size);
+        Page<Board> pageBoards = boardService.findBoards(page - 1, size);
         List<Board> boards = pageBoards.getContent();
 
         return new ResponseEntity<>(boards, HttpStatus.OK);
-
-
     }
 
-//    // 질문 게시글 수정
-//    @PatchMapping("/{board-id}")
-//    public ResponseEntity patchBoard(@PathVariable("board-id") long boardId,
-//                             @Valid @RequestBody BoardPatchDto boardPatchDto){
-//        Board board = new Board();
-//        board.setBoardId(boardPatchDto.getBoardId());
-//        board.setTitle(boardPatchDto.getTitle());
-//        board.setContent(boardPatchDto.getContent());
-//
-//        Board response = boardService.updateBoard(board);
-//
-//        return new ResponseEntity<>(response, HttpStatus.OK);
-//    }
-//
-//    @DeleteMapping("/{board-id}")
-//    public ResponseEntity deleteBoard(
-//            @PathVariable("board-id") @Positive long boardId){
-//        boardService.deleteBoard(boardId);
-//
-//        return new ResponseEntity(HttpStatus.NO_CONTENT);
-//    }
+
+    // 게시글 수정
+    @PatchMapping("/{board-id}")
+    public ResponseEntity patchBoard(@PathVariable("board-id") @Positive long boardId,
+                             @Valid @RequestBody BoardPatchDto boardPatchDto){
+
+        boardPatchDto.setBoardId(boardId);
+        Board board = boardPatchDto.toBoard();
+
+        Board updateBoard = boardService.updateBoard(board);
+
+        return new ResponseEntity<>(updateBoard, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{board-id}")
+    public ResponseEntity deleteBoard(
+            @PathVariable("board-id") @Positive long boardId){
+        boardService.deleteBoard(boardId);
+
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
+    }
     // 단일 게시글 조회수 조회
 //    @GetMapping("/{board-id}/views")
 //    public Long getViews(@PathVariable("board-id") long boardId){

@@ -1,5 +1,6 @@
 package com.server.domain.board.entity;
 
+import com.server.global.common.auditing.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Board {
+public class Board extends BaseTimeEntity {
 
     @Id // 데이터베이스 테이블의 BOARD 테이블과 매핑
     @GeneratedValue(strategy = GenerationType.IDENTITY) // IDENTITY 기본 키 생성 전략
