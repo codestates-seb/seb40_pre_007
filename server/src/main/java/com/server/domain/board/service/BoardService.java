@@ -46,7 +46,6 @@ public class BoardService {
         Page<Board> findAllBoard = boardRepository.findAll(
                 PageRequest.of(page, size, Sort.by("boardId").descending()));
 
-
         return findAllBoard;
     }
 
@@ -57,7 +56,7 @@ public class BoardService {
                 boardRepository.findById(boardId);
         Board findBoard =
                 optionalBoard.orElseThrow(() ->
-                        new BusinessLogicException(ExceptionCode.ACCOUNT_NOT_FOUND));
+                        new BusinessLogicException(ExceptionCode.BOARD_NOT_FOUND));
 
         return findBoard;
     }
@@ -65,9 +64,10 @@ public class BoardService {
 
     private void VerifiedNoBoard(Page<Board> findAllBoard){ // status가 QUESTION_EXIST 인 List 데이터가 0이면 예외 발생
         if (findAllBoard.getTotalElements()==0){
-            throw new BusinessLogicException(ExceptionCode.ACCOUNT_NOT_FOUND);
+            throw new BusinessLogicException(ExceptionCode.BOARD_NOT_FOUND);
         }
     }
+
 
 //    // 질문 게시글 수정
 //    public Board updateBoard(long boardId){
