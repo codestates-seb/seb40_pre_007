@@ -1,7 +1,7 @@
-package com.server.board.dto;
+package com.server.domain.board.dto;
 
 
-import com.server.board.entity.Board;
+import com.server.domain.board.entity.Board;
 import lombok.Builder;
 import lombok.Getter;
 

@@ -1,4 +1,4 @@
-package com.server.board.exception;
+package com.server.domain.board.exception;
 
 import lombok.Getter;
 

@@ -1,6 +1,8 @@
-package com.server.board.dto;
+package com.server.domain.board.dto;
 
+import com.server.domain.board.entity.Board;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 
@@ -16,5 +18,12 @@ public class BoardPostDto {
 
     // 유저의 로그인 유효성 검증 변수 추가해야함!
 
+    public Board toBoard(){
+        Board board = new Board();
+        board.setTitle(title);
+        board.setContent(content);
+
+        return board;
+    }
 
 }
