@@ -84,7 +84,7 @@ export const FacebookBtn = () => {
 };
 
 // LagreBtn 사용시 props로 width를 전달할 수 있습니다.
-export const LargeBtn = ({ children, width = "300px", onClick }) => {
+export const LargeBtn = ({ children, width = "full", onClick }) => {
   console.log(onClick);
   return (
     <button
@@ -97,7 +97,6 @@ export const LargeBtn = ({ children, width = "300px", onClick }) => {
 
 // SmallBtn 사용시 연한 컬러는 bg 프로퍼티에 "button-blue"를 추가해주세요.
 export const SmallBtn = ({ children, bg = "main-blue", onClick }) => {
-  console.log(onClick);
   const [textColor, hoverColor] =
     bg === "main-blue" ? ["white", "deep-blue"] : ["font-gray", "blue-200"];
   return (
