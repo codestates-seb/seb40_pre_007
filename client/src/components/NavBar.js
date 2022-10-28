@@ -18,7 +18,7 @@ export const NavBar = () => {
   const onLogout = () => setIsLogin(false);
 
   return (
-    <header className="bg-white fixed w-screen flex items-center h-[60px] border-t-4 border-t-orange-400 border-b-gray-200 shadow-md pr-4 lg:justify-center md:pl-1">
+    <header className="bg-white fixed w-screen flex items-center h-[60px] border-t-4 border-t-orange-400 border-b-gray-200 shadow-md pr-4 lg:justify-center top-0 md:pl-1">
       <div className="flex w-full items-center max-w-[1450px] h-full">
         {/* Hambergers */}
         <div className="flex justify-center items-center px-4 hover:bg-main-gray h-full cursor-pointer md:hidden">
@@ -80,12 +80,13 @@ export const NavBar = () => {
               </svg>
             </div>
           </div>
+          {/* 데스크탑 */}
           <SearchBarDesktop
             setIsSearchBarClick={setIsSearchBarClick}
             isSearchBarClick={isSearchBarClick}
           />
         </div>
-        {/* 드롭다운 모바일 */}
+        {/* Search Bar + 드롭다운 모바일 */}
         {isSearchBarClick ? (
           <SerchBarMobile
             className={makeClassName(
