@@ -7,8 +7,13 @@ import com.server.domain.board.repository.BoardRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.validation.constraints.Positive;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,6 +54,19 @@ public class BoardService {
         return findAllBoard;
     }
 
+    // 질문 게시글 수정
+    public Board updateBoard(Board board){
+        Board findBoard = findVerifiedBoard(board.getBoardId()); // 수정 요청한 질문이 DB에 없으면 에러!
+
+
+        Optional.ofNullable(board.getTitle()) //제목수정
+                .ifPresent(title->findBoard.setTitle(title));
+        Optional.ofNullable(board.getContent()) //내용수정
+                .ifPresent(content->findBoard.setContent(content));
+
+        return findBoard;
+    }
+
 
 
     public Board findVerifiedBoard(long boardId){
@@ -69,19 +87,11 @@ public class BoardService {
     }
 
 
-//    // 질문 게시글 수정
-//    public Board updateBoard(long boardId){
-//
-//        // db 연결 후 수정 필요!!
-//        Board board =
-//                new Board(boardId,"title","content",1);
-//        return board;
-//    }
-//
+    // 단일 질문 게시글 삭제
+    public void deleteBoard(long boardId) {
+        Board findBoard = findVerifiedBoard(boardId);
 
-//
-//    // 단일 질문 게시글 삭제
-//    public void deleteBoard(long boardId){
-//
-//    }
+        boardRepository.delete(findBoard);
+
+    }
 }
