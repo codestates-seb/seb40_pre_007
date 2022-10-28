@@ -54,7 +54,7 @@ public class JwtProcessor {
         return Jwts.parserBuilder()
                 .setSigningKey(Keys.hmacShaKeyFor(JwtProperties.SECRET.getBytes()))
                 .build()
-                .parseClaimsJwt(jwtToken)
+                .parseClaimsJws(jwtToken)
                 .getBody();
     }
 
