@@ -5,6 +5,7 @@ import { useState } from "react";
 import { SerchBarMobile, SearchBarDesktop } from "./SearchBar";
 import { makeClassName } from "../libs/makeClassName";
 import { NavBarBtns } from "./NavBarBtns";
+import { SmallBtn } from "./Buttons";
 
 export const NavBar = () => {
   const [isSearchBarClick, setIsSearchBarClick] = useState(false);
@@ -17,8 +18,8 @@ export const NavBar = () => {
   const onLogout = () => setIsLogin(false);
 
   return (
-    <header className="bg-white fixed w-full flex items-center h-[60px] border-t-4 border-t-orange-400 border-b-gray-200 shadow-md pr-4 lg:justify-center">
-      <div className="flex w-full items-center max-w-7xl h-full">
+    <header className="bg-white fixed w-screen flex items-center h-[60px] border-t-4 border-t-orange-400 border-b-gray-200 shadow-md pr-4 lg:justify-center top-0 md:pl-1 z-10">
+      <div className="flex w-full items-center max-w-[1450px] h-full">
         {/* Hambergers */}
         <div className="flex justify-center items-center px-4 hover:bg-main-gray h-full cursor-pointer md:hidden">
           <div className="flex flex-col w-[18px] h-[30px] space-y-1 justify-center">
@@ -79,12 +80,13 @@ export const NavBar = () => {
               </svg>
             </div>
           </div>
+          {/* 데스크탑 */}
           <SearchBarDesktop
             setIsSearchBarClick={setIsSearchBarClick}
             isSearchBarClick={isSearchBarClick}
           />
         </div>
-        {/* 드롭다운 모바일 */}
+        {/* Search Bar + 드롭다운 모바일 */}
         {isSearchBarClick ? (
           <SerchBarMobile
             className={makeClassName(
@@ -94,23 +96,20 @@ export const NavBar = () => {
         ) : null}
         {/* Btns */}
         {isLogin ? (
-          <div className="flex h-full">
-            <NavBarBtns id="hi" />
-            <button onClick={onLogout} className="text-xs">
-              임시로그아웃
-            </button>
-          </div>
+          <>
+            <div className="flex h-full">
+              <NavBarBtns id="hi" />
+            </div>
+            <SmallBtn bg={"button-blue"} onClick={onLogout}>
+              Log out
+            </SmallBtn>
+          </>
         ) : (
-          <div className="space-x-2 ">
-            <button
-              className="px-3 py-1.5 bg-blue-100 border border-gray-400 rounded-md text-gray-500 hover:bg-blue-200 transition-colors"
-              onClick={onLogin}
-            >
+          <div className="space-x-2 flex">
+            <SmallBtn bg={"button-blue"} onClick={onLogin}>
               Log in
-            </button>
-            <button className="px-3 py-1.5 bg-main-blue border border-gray-400 rounded-md text-white hover:bg-deep-blue transition-colors">
-              Sign up
-            </button>
+            </SmallBtn>
+            <SmallBtn>Sign up</SmallBtn>
           </div>
         )}
       </div>

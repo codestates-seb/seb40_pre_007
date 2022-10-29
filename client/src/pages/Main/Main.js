@@ -53,7 +53,6 @@ export const Main = () => {
               <Question />
             </ul>
           </div>
-          {/* <aside className="hidden p-6 bg-blue-200 w-96 lg:block">aside</aside> */}
           <Sidebar />
         </div>
       </div>
