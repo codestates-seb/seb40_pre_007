@@ -30,11 +30,12 @@ public class BoardController {
     @PostMapping
     public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto)throws Exception{
 
-        Board board = boardDto.toBoard();
+        Board board =
+                boardService.createBoard(mapper.boardPostDtoToBoard(boardDto));
 
-        Board response = boardService.createBoard(board);
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.boardToBoardResponseDto(board)), HttpStatus.CREATED);
 
     }
 
@@ -67,11 +68,12 @@ public class BoardController {
                              @Valid @RequestBody BoardPatchDto boardPatchDto){
 
         boardPatchDto.setBoardId(boardId);
-        Board board = boardPatchDto.toBoard();
 
-        Board updateBoard = boardService.updateBoard(board);
-
-        return new ResponseEntity<>(updateBoard, HttpStatus.OK);
+        Board board =
+                boardService.updateBoard(mapper.boardPatchDtoToBoard(boardPatchDto));
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.boardToBoardResponseDto(board)),
+                HttpStatus.OK);
     }
 
     @DeleteMapping("/{board-id}")
