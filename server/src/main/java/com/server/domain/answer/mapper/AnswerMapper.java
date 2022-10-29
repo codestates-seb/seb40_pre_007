@@ -1,4 +1,4 @@
-/*package com.server.domain.answer.mapper;
+package com.server.domain.answer.mapper;
 
 import com.server.domain.answer.dto.AnswerPatchDto;
 import com.server.domain.answer.dto.AnswerPostDto;
@@ -8,8 +8,5 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface AnswerMapper {
-    Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto);
-    Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto);
     AnswerResponseDto answerToAnswerResponseDto(Answer answer);
 }
-*/

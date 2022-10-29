@@ -1,6 +1,7 @@
-/*package com.server.domain.answer.entity;
+package com.server.domain.answer.entity;
 
 import com.server.domain.board.entity.Board;
+import com.server.global.common.auditing.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,12 +14,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Setter
-public class Answer {
+public class Answer extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) //IDENTITY 기본키 생성 전략
     private long answerId;
 
-    private Board board;
+    private long boardId;
 
     @Column(nullable = false, updatable = true, unique = false)
     private String content;
@@ -27,4 +28,4 @@ public class Answer {
         this.content = content;
     }
 
-}*/
+}
