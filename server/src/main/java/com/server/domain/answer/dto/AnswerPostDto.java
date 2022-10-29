@@ -10,7 +10,6 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class AnswerPostDto {
-    private long boardId;
 
     @NotBlank
     private String content;
@@ -19,7 +18,6 @@ public class AnswerPostDto {
     public Answer toAnswer() {
         Answer answer = new Answer();
         answer.setContent(content);
-        answer.setBoardId(boardId);
 
         return answer;
     }
