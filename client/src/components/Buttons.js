@@ -102,9 +102,11 @@ export const SmallBtn = ({ children, bg = "main-blue", onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={`bg-${bg} hover:bg-${hoverColor} py-1.5 px-3 flex justify-center items-center border-button-border-blue border rounded-md`}
+      className={`bg-${bg} hover:bg-${hoverColor} py-1.5 px-3 flex justify-center items-center border-button-border-blue border rounded-md max-h-12`}
     >
-      <span className={`text-${textColor} text-sm`}>{children}</span>
+      <span className={`text-${textColor} text-sm whitespace-nowrap`}>
+        {children}
+      </span>
     </button>
   );
 };
