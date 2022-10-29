@@ -32,10 +32,9 @@ public class AnswerController {
     public String postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto,
                              @PathVariable("board-id") @Positive long boardId) {
 
-        answerPostDto.setBoardId(boardId);
         Answer answer = answerPostDto.toAnswer();
 
-        answerService.createAnswer(answer);
+        answerService.createAnswer(answer, boardId);
 
         return "success answer created";
     }

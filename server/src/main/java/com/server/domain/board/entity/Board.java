@@ -1,5 +1,7 @@
 package com.server.domain.board.entity;
 
+import com.server.domain.account.entity.Account;
+import com.server.domain.answer.entity.Answer;
 import com.server.global.common.auditing.BaseTimeEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,6 +9,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,10 +27,23 @@ public class Board extends BaseTimeEntity {
     @Column(nullable = false, updatable = true, unique = false)
     private String content;
 
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private Account account;
+
+    @OneToMany (mappedBy = "board", cascade = CascadeType.PERSIST)
+    private List<Answer> answerList = new ArrayList<>();
 
     @Enumerated(value = EnumType.STRING)
     @Column(length = 20, nullable = false)
     private BoardStatus boardStatus = BoardStatus.BOARD_ACTIVE;
+
+    public void setAnswer(Answer answer) {
+        answerList.add(answer);
+        if (answer.getBoard() != this) {
+            answer.setBoard(this);
+        }
+    }
 
 
     // 추후 status에 대한 논의 필요

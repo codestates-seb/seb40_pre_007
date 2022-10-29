@@ -22,9 +22,10 @@ public class AnswerService {
     private final BoardRepository boardRepository;
 
     //답변 생성 /DB에 저장 후, 되돌려 받는 것으로 변경 필요.
-    public Answer createAnswer(Answer answer) {
+    public Answer createAnswer(Answer answer, Long boardId) {
 
-        Board findBoard = verifiedBoardId(answer.getBoardId());
+        Board findBoard = verifiedBoardId(boardId);
+        answer.setBoard(findBoard);
 
         return answerRepository.save(answer);
     }
