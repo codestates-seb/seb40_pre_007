@@ -5,6 +5,7 @@ import com.server.domain.account.entity.Account;
 import com.server.domain.board.entity.Board;
 import com.server.domain.board.service.BoardService;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,25 @@ public class BoardResponseDto {
     private long boardId;
     private String title;
     private String content;
-    private long views;
     private Board.BoardStatus boardStatus;
 
 
     public String getBoardStatus(){
         return boardStatus.getStatus();
     }
+
+    /*
+    추후에 mapStructure 사용하지 않기 위해 구현해 놓은 코드
+     */
+//    public BoardResponseDto toBoard(Board board){
+//        boardId = board.getBoardId();
+//        title = board.getTitle();
+//        content = board.getContent();
+//        boardStatus = board.getBoardStatus();
+//        BoardResponseDto boardResponseDto =
+//                new BoardResponseDto(boardId,title, content, boardStatus);
+//
+//        return boardResponseDto;
+//    }
 
 }

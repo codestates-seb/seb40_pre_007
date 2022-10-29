@@ -1,10 +1,8 @@
 package com.server.domain.board.controller;
 
-// import com.server.global.board.dto.BoardPatchDto;
-import com.server.domain.board.dto.BoardPatchDto;
-import com.server.domain.board.dto.BoardPostDto;
+import com.server.domain.board.dto.*;
 import com.server.domain.board.entity.Board;
-//import com.server.board.response.ErrorResponse;
+import com.server.domain.board.mapper.BoardMapper;
 import com.server.domain.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -26,24 +24,29 @@ import java.util.List;
 public class BoardController {
 
     private final BoardService boardService;
+    private final BoardMapper mapper;
 
     // 질문 게시글 작성
     @PostMapping
     public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto)throws Exception{
 
-        Board board = boardDto.toBoard();
+        Board board =
+                boardService.createBoard(mapper.boardPostDtoToBoard(boardDto));
 
-        Board response = boardService.createBoard(board);
 
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.boardToBoardResponseDto(board)), HttpStatus.CREATED);
 
     }
 
     // 단일 질문 게시글 조회
     @GetMapping("/{board-id}")
     public ResponseEntity getBoard(@PathVariable("board-id") @Positive long boardId){
-        Board response = boardService.findBoard(boardId);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+
+        Board board = boardService.findBoard(boardId);
+        return new ResponseEntity(new SingleResponseDto<>(mapper.boardToBoardResponseDto(board))
+        ,HttpStatus.OK);
+
     }
 
     /// 전체 질문 게시글 조회
@@ -54,7 +57,8 @@ public class BoardController {
         Page<Board> pageBoards = boardService.findBoards(page - 1, size);
         List<Board> boards = pageBoards.getContent();
 
-        return new ResponseEntity<>(boards, HttpStatus.OK);
+        return new ResponseEntity<>(
+                new MultiResponseDto<>(mapper.boardsToBoardResponseDto(boards), pageBoards), HttpStatus.OK);
     }
 
 
@@ -64,11 +68,12 @@ public class BoardController {
                              @Valid @RequestBody BoardPatchDto boardPatchDto){
 
         boardPatchDto.setBoardId(boardId);
-        Board board = boardPatchDto.toBoard();
 
-        Board updateBoard = boardService.updateBoard(board);
-
-        return new ResponseEntity<>(updateBoard, HttpStatus.OK);
+        Board board =
+                boardService.updateBoard(mapper.boardPatchDtoToBoard(boardPatchDto));
+        return new ResponseEntity<>(
+                new SingleResponseDto<>(mapper.boardToBoardResponseDto(board)),
+                HttpStatus.OK);
     }
 
     @DeleteMapping("/{board-id}")
