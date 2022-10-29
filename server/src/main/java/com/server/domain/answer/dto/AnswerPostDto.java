@@ -1,4 +1,4 @@
-/*package com.server.domain.answer.dto;
+package com.server.domain.answer.dto;
 
 import com.server.domain.answer.entity.Answer;
 import lombok.Getter;
@@ -19,8 +19,8 @@ public class AnswerPostDto {
     public Answer toAnswer() {
         Answer answer = new Answer();
         answer.setContent(content);
-        answer.getBoard(boardId).;
+        answer.setBoardId(boardId);
+
         return answer;
     }
 }
-*/

@@ -1,15 +1,18 @@
-/*package com.server.domain.answer.controller;
+package com.server.domain.answer.controller;
 
 import com.server.domain.answer.dto.AnswerPatchDto;
 import com.server.domain.answer.dto.AnswerPostDto;
 import com.server.domain.answer.entity.Answer;
+import com.server.domain.answer.mapper.AnswerMapper;
 import com.server.domain.answer.service.AnswerService;
+import com.server.domain.board.dto.SingleResponseDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.mapstruct.Mapper;
-import com.server.domain.answer.mapper.AnswerMapper;
+//import com.server.domain.answer.mapper.AnswerMapper;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Positive;
@@ -18,22 +21,21 @@ import java.util.List;
 @RestController
 @RequestMapping("/api")
 @Validated
+@RequiredArgsConstructor
 public class AnswerController {
     private final AnswerService answerService;
-    //DI 적용
-    public AnswerController(AnswerService answerService) {
-        this.answerService = answerService;
-    }
+    private final AnswerMapper mapper;
 
-*/
-/*
+
     // 답변 생성
     @PostMapping("/{board-id}/answers")
     public String postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto,
-                                     @PathVariable("board-id") @Positive long boardId) {
+                             @PathVariable("board-id") @Positive long boardId) {
 
         answerPostDto.setBoardId(boardId);
         Answer answer = answerPostDto.toAnswer();
+
+        answerService.createAnswer(answer);
 
         return "success answer created";
     }
@@ -44,16 +46,22 @@ public class AnswerController {
                                       @PathVariable("answers-id") @Positive long answerId) {
 
         answerPatchDto.setAnswerId(answerId);
+        Answer answer = answerPatchDto.toAnswer();
 
-        return new ResponseEntity<>(answerPatchDto, HttpStatus.OK);
+        Answer updatedAnswer = answerService.updateAnswer(answer);
+
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(updatedAnswer)),
+                HttpStatus.OK);
     }
 
 
 
     //답변 삭제
     @DeleteMapping("/answers/{answers-id}")
-    public ResponseEntity deleteAnswer(@PathVariable("answers-id") long answerId) {
+    public ResponseEntity deleteAnswer(@PathVariable("answers-id") @Positive long answerId) {
+
+        answerService.deleteAnswer(answerId);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
-}*/
+}

@@ -1,32 +1,28 @@
-/*package com.server.domain.answer.dto;
+package com.server.domain.answer.dto;
 
+import com.server.domain.answer.entity.Answer;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
 
 @Getter
+@Setter
 public class AnswerPatchDto {
     private long answerId;
-
-    public long getAnswerId() {
-        return answerId;
-    }
-
-    public void setAnswerId(long answerId) {
-        this.answerId = answerId;
-    }
 
     @NotBlank
     private String content;
 
-    public String getContent() {
-        return content;
+    public Answer toAnswer() {
+        Answer answer = new Answer();
+
+        answer.setAnswerId(answerId);
+        answer.setContent(content);
+
+        return answer;
     }
 
-    public void setContent(String content) {
-        this.content = content;
-    }
 }
 
 
-*/
