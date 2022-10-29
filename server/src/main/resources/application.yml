@@ -6,3 +6,9 @@ server:
       enabled: true
       force: true
 
+spring:
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
