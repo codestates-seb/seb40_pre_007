@@ -1,3 +1,10 @@
+import "@toast-ui/editor/dist/toastui-editor.css";
+import "prismjs/themes/prism.css";
+import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css";
+import Prism from "prismjs";
+import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
+
+import { Editor } from "@toast-ui/react-editor";
 import { NavBar } from "../../components/NavBar";
 
 export const Ask = () => {
@@ -8,11 +15,11 @@ export const Ask = () => {
         <div className="flex w-full max-w-7xl">
           <div className="w-full px-6">
             <div className="flex flex-col">
-              <div className="flex h-36 w-full font-bold text-3xl items-center">
+              <div className="flex h-36 w-full font-bold text-3xl items-center mb-14 lg:mb-0 ">
                 Ask a public question
               </div>
-              <div className="flex h-80 w-full mb-24 lg:mb-0 items-center">
-                <div className="lg:w-[70%] w-full bg-blue-200 border-2 border-blue-300 rounded-md p-6">
+              <div className="flex h-56 lg:h-80 w-full mb-48 lg:mb-0 items-center">
+                <div className="lg:w-[70%]  w-full bg-blue-200 border-2 border-blue-300 rounded-md p-6">
                   <h2 className="text-2xl mb-2">Writing a good question</h2>
                   <p className="mb-0">
                     You’re ready to
@@ -58,7 +65,7 @@ export const Ask = () => {
                   </ul>
                 </div>
               </div>
-              <div className="flex h-80 w-full mb-54 lg:mb-0 lg:h-64 flex-col-reverse lg:flex-row items-start">
+              <div className="flex h-[19.5rem] w-full mb-54 lg:mb-0 lg:h-64 flex-col-reverse lg:flex-row items-start">
                 <div className="lg:w-[70%] w-full my-3 lg:my-0 border border-gray-400 flex-shrink-0 rounded-md">
                   <div className="flex flex-col flex-shrink-0 p-6 w-full">
                     <div className="flex flex-col gap-y-2">
@@ -127,10 +134,24 @@ export const Ask = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex h-72 w-full font-bold bg-yellow-200 text-3xl items-center">
-                Editor 자리~!
-              </div>
 
+              <Editor
+                initialValue="hello react editor world!"
+                previewStyle="holizontal"
+                height="500px"
+                initialEditType="markdown"
+                useCommandShortcut={true}
+                autofocus={false}
+                toolbarItems={[
+                  ["bold", "italic", "strike"],
+                  ["code", "codeblock"],
+                  ["hr", "quote"],
+                  ["ul", "ol", "task", "indent", "outdent"],
+                  ["table", "image", "link"],
+                ]}
+                viewer={true}
+                plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
+              />
               <button
                 className="w-48 text-white py-4 mt-5 rounded-md bg-blue-400"
                 type="button"
