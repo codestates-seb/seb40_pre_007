@@ -1,6 +1,7 @@
 import Logo from "../assets/Stack_Overflow-Icon.png";
 import { SmallBtn } from "./Buttons";
 import { Link } from "react-router-dom";
+import { BaseEditor } from "./BaseEditor";
 
 export const Answers = () => {
   const answerCount = 3;
@@ -65,9 +66,10 @@ export const Answers = () => {
       ))}
       <div className="flex w-full flex-col">
         <span className="pb-4 text-lg md:text-2xl py-5">Your Answer</span>
-        <div className="flex w-full h-96 bg-main-orange">
+        {/* <div className="flex w-full h-96 bg-main-orange">
           <span className="m-auto text-2xl">에디터 자리</span>
-        </div>
+        </div> */}
+        <BaseEditor />
         <div className="flex my-6">
           <SmallBtn>Post Your Answer</SmallBtn>
         </div>
