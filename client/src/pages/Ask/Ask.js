@@ -1,17 +1,16 @@
 import "@toast-ui/editor/dist/toastui-editor.css";
 import "prismjs/themes/prism.css";
 import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css";
-import Prism from "prismjs";
-import codeSyntaxHighlight from "@toast-ui/editor-plugin-code-syntax-highlight";
-
-import { Editor } from "@toast-ui/react-editor";
 import { NavBar } from "../../components/NavBar";
+import { Footer } from "../../components/Footer";
+import { BaseEditor } from "../../components/BaseEditor";
+// import { LargeBtn } from "../../components/Buttons";
 
 export const Ask = () => {
   return (
-    <div className="flex h-screen w-screen">
+    <div className="flex flex-col h-screen w-screen">
       <NavBar />
-      <div className="flex pt-[60px] w-screen justify-center">
+      <div className="flex pt-[60px] w-screen justify-center mb-32">
         <div className="flex w-full max-w-7xl">
           <div className="w-full px-6">
             <div className="flex flex-col">
@@ -94,7 +93,7 @@ export const Ask = () => {
                       </div>
                     </div>
                     <button
-                      className="w-20 text-white py-4 mt-5 rounded-md bg-blue-400"
+                      className="w-20 text-white py-4 mt-5 rounded-md bg-main-blue"
                       type="button"
                     >
                       Next
@@ -135,39 +134,37 @@ export const Ask = () => {
                 </div>
               </div>
 
-              <div className="lg:w-[70%]  w-full border-2 rounded-md p-6">
-                gkdlgkdl
-                <Editor
-                  initialValue="hello react editor world!"
-                  previewStyle="holizontal"
-                  height="500px"
-                  initialEditType="markdown"
-                  useCommandShortcut={true}
-                  autofocus={false}
-                  toolbarItems={[
-                    ["bold", "italic", "strike"],
-                    ["code", "codeblock"],
-                    ["hr", "quote"],
-                    ["ul", "ol", "task", "indent", "outdent"],
-                    ["table", "image", "link"],
-                  ]}
-                  viewer={true}
-                  plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
-                />
+              <div className="lg:w-[70%] w-full border border-gray-400 rounded-md p-6">
+                <div className="flex flex-col">
+                  <div className="flex--item">
+                    <div className="font-bold">Contents</div>
+                  </div>
+                  <div className="d-flex flex--item md:fd-column">
+                    <div className="my-4">
+                      Introduce the problem and expand what you put in the
+                      title. Also describe what you tried, what you expected to
+                      happen, and what actually happened. A minimum of 20
+                      characters.
+                    </div>
+                  </div>
+                </div>
+                <BaseEditor height="600px" />
               </div>
 
               <button
-                className="w-48 text-white py-4 mt-5 rounded-md bg-blue-400"
+                className="w-48 text-white py-4 mt-5 bg-main-blue border-button-border-gray border rounded-md  hover:bg-deep-blue focus:outline-none focus:border-main-blue focus:ring-4 focus:ring-blue-100 focus:bg-button-fucous-blue"
                 type="button"
               >
                 Review your question
               </button>
+              {/* <LargeBtn width={"300px"}>Review your question</LargeBtn>
+                // 왜 특정 css만 먹히지? width={"300px"} */}
             </div>
           </div>
-
-          {/* <aside className="bg-blue-200 w-96 p-6 lg:block hidden">aside</aside> */}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
