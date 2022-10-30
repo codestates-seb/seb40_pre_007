@@ -27,9 +27,9 @@ export const Ask = () => {
                       className="text-blue-500"
                       href="https://stackoverflow.com/help/how-to-ask"
                     >
-                      ask
+                      {" ask "}
                     </a>
-                    a
+                    {"a "}
                     <a
                       className="text-blue-500"
                       href="https://stackoverflow.com/help/on-topic"
@@ -44,7 +44,7 @@ export const Ask = () => {
                       className="text-blue-500"
                       href="https://stackexchange.com/sites#technology-traffic"
                     >
-                      the topics here
+                      {" the topics here "}
                     </a>
                     to find a relevant site.
                   </p>
@@ -135,23 +135,27 @@ export const Ask = () => {
                 </div>
               </div>
 
-              <Editor
-                initialValue="hello react editor world!"
-                previewStyle="holizontal"
-                height="500px"
-                initialEditType="markdown"
-                useCommandShortcut={true}
-                autofocus={false}
-                toolbarItems={[
-                  ["bold", "italic", "strike"],
-                  ["code", "codeblock"],
-                  ["hr", "quote"],
-                  ["ul", "ol", "task", "indent", "outdent"],
-                  ["table", "image", "link"],
-                ]}
-                viewer={true}
-                plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
-              />
+              <div className="lg:w-[70%]  w-full border-2 rounded-md p-6">
+                gkdlgkdl
+                <Editor
+                  initialValue="hello react editor world!"
+                  previewStyle="holizontal"
+                  height="500px"
+                  initialEditType="markdown"
+                  useCommandShortcut={true}
+                  autofocus={false}
+                  toolbarItems={[
+                    ["bold", "italic", "strike"],
+                    ["code", "codeblock"],
+                    ["hr", "quote"],
+                    ["ul", "ol", "task", "indent", "outdent"],
+                    ["table", "image", "link"],
+                  ]}
+                  viewer={true}
+                  plugins={[[codeSyntaxHighlight, { highlighter: Prism }]]}
+                />
+              </div>
+
               <button
                 className="w-48 text-white py-4 mt-5 rounded-md bg-blue-400"
                 type="button"
