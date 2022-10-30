@@ -10,7 +10,7 @@ export const Main = () => {
       <NavBar />
       <div className="flex pt-[60px] w-screen justify-center">
         <AsideNav />
-        <div className="flex w-full max-w-7xl">
+        <div className="flex w-full max-w-7xl flex-col md:flex-row">
           <div className="w-full">
             <div className="flex justify-between p-6 mb-6">
               <div className="text-3xl">All Questions</div>

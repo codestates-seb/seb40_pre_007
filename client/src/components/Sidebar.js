@@ -1,7 +1,7 @@
 export const Sidebar = () => {
   return (
     <>
-      <aside className="box-border flex-col hidden h-full p-4 space-y-4 lg:flex">
+      <aside className="box-border flex-col h-full p-4 space-y-4 lg:flex">
         <ul className="shadow-md h-[540px] text-sm bg-main-yellow border border-border-yellow rounded lg:w-80">
           <li className="px-4 py-3 font-bold border-b text-font-gray border-border-yellow bg-light-yellow">
             The overflow Blog
