@@ -2,8 +2,9 @@ import { AsideNav } from "../../components/AsideNav";
 import { NavBar } from "../../components/NavBar";
 import { SmallBtn } from "../../components/Buttons";
 import { Contents } from "../../components/Contents";
-// import { Sidebar } from "../../components/Sidebar";
-// import { Footer } from "../../components/Footer";
+import { Sidebar } from "../../components/Sidebar";
+import { Footer } from "../../components/Footer";
+import { Answers } from "../../components/Answers";
 
 export const Detail = () => {
   return (
@@ -36,20 +37,20 @@ export const Detail = () => {
             {/* 본문 */}
             <div className="box-border flex flex-col w-full h-full pt-3 lg:flex-row">
               <div className="flex flex-col w-full px-2">
-                {/* Contents */}
-                {/* <span className="m-auto text-2xl">Contents 영역❤️</span> */}
                 <Contents />
-                {/* Answer */}
-                <section className="flex flex-col w-full h-full bg-main-yellow ">
+                <Answers />
+                {/* <section className="flex flex-col w-full h-full bg-main-yellow ">
                   <span className="m-auto text-2xl">Answer 영역❤️</span>
-                </section>
+                </section> */}
               </div>
               {/* <Sidebar /> */}
+              <Sidebar />
             </div>
           </div>
         </div>
       </div>
       {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
