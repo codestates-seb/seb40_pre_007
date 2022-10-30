@@ -29,7 +29,7 @@ export const NavBar = () => {
           </div>
         </div>
         {/* Icon : 모바일 */}
-        <div className="flex justify-center items-center px-[8px] hover:bg-main-gray h-full cursor-pointer md:hidden">
+        <div className="flex shrink-0 justify-center items-center px-[8px] hover:bg-main-gray h-full cursor-pointer md:hidden ">
           <Link to={"/"}>
             <img src={Icon} alt="" className="h-[35px]" />
           </Link>
