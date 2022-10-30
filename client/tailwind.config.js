@@ -25,6 +25,7 @@ module.exports = {
         "button-fucus-blue": "#0066B3",
         "input-border-gray": "#d1d5db",
         "light-blue": "#2F7EFF",
+        "tag-blue": "#e1ecf4",
       },
     },
   },
