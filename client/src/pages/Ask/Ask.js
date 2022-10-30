@@ -1,18 +1,24 @@
+import "@toast-ui/editor/dist/toastui-editor.css";
+import "prismjs/themes/prism.css";
+import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin-code-syntax-highlight.css";
 import { NavBar } from "../../components/NavBar";
+import { Footer } from "../../components/Footer";
+import { BaseEditor } from "../../components/BaseEditor";
+// import { LargeBtn } from "../../components/Buttons";
 
 export const Ask = () => {
   return (
-    <div className="flex h-screen w-screen">
+    <div className="flex flex-col h-screen w-screen">
       <NavBar />
-      <div className="flex pt-[60px] w-screen justify-center">
+      <div className="flex pt-[60px] w-screen justify-center mb-32">
         <div className="flex w-full max-w-7xl">
           <div className="w-full px-6">
             <div className="flex flex-col">
-              <div className="flex h-36 w-full font-bold text-3xl items-center">
+              <div className="flex h-36 w-full font-bold text-3xl items-center mb-14 lg:mb-0 ">
                 Ask a public question
               </div>
-              <div className="flex h-80 w-full mb-24 lg:mb-0 items-center">
-                <div className="lg:w-[70%] w-full bg-blue-200 border-2 border-blue-300 rounded-md p-6">
+              <div className="flex h-56 lg:h-80 w-full mb-48 lg:mb-0 items-center">
+                <div className="lg:w-[70%]  w-full bg-blue-200 border-2 border-blue-300 rounded-md p-6">
                   <h2 className="text-2xl mb-2">Writing a good question</h2>
                   <p className="mb-0">
                     You’re ready to
@@ -20,9 +26,9 @@ export const Ask = () => {
                       className="text-blue-500"
                       href="https://stackoverflow.com/help/how-to-ask"
                     >
-                      ask
+                      {" ask "}
                     </a>
-                    a
+                    {"a "}
                     <a
                       className="text-blue-500"
                       href="https://stackoverflow.com/help/on-topic"
@@ -37,7 +43,7 @@ export const Ask = () => {
                       className="text-blue-500"
                       href="https://stackexchange.com/sites#technology-traffic"
                     >
-                      the topics here
+                      {" the topics here "}
                     </a>
                     to find a relevant site.
                   </p>
@@ -58,7 +64,7 @@ export const Ask = () => {
                   </ul>
                 </div>
               </div>
-              <div className="flex h-80 w-full mb-54 lg:mb-0 lg:h-64 flex-col-reverse lg:flex-row items-start">
+              <div className="flex h-[19.5rem] w-full mb-54 lg:mb-0 lg:h-64 flex-col-reverse lg:flex-row items-start">
                 <div className="lg:w-[70%] w-full my-3 lg:my-0 border border-gray-400 flex-shrink-0 rounded-md">
                   <div className="flex flex-col flex-shrink-0 p-6 w-full">
                     <div className="flex flex-col gap-y-2">
@@ -87,7 +93,7 @@ export const Ask = () => {
                       </div>
                     </div>
                     <button
-                      className="w-20 text-white py-4 mt-5 rounded-md bg-blue-400"
+                      className="w-20 text-white py-4 mt-5 rounded-md bg-main-blue"
                       type="button"
                     >
                       Next
@@ -127,22 +133,38 @@ export const Ask = () => {
                   </div>
                 </div>
               </div>
-              <div className="flex h-72 w-full font-bold bg-yellow-200 text-3xl items-center">
-                Editor 자리~!
+
+              <div className="lg:w-[70%] w-full border border-gray-400 rounded-md p-6">
+                <div className="flex flex-col">
+                  <div className="flex--item">
+                    <div className="font-bold">Contents</div>
+                  </div>
+                  <div className="d-flex flex--item md:fd-column">
+                    <div className="my-4">
+                      Introduce the problem and expand what you put in the
+                      title. Also describe what you tried, what you expected to
+                      happen, and what actually happened. A minimum of 20
+                      characters.
+                    </div>
+                  </div>
+                </div>
+                <BaseEditor height="600px" />
               </div>
 
               <button
-                className="w-48 text-white py-4 mt-5 rounded-md bg-blue-400"
+                className="w-48 text-white py-4 mt-5 bg-main-blue border-button-border-gray border rounded-md  hover:bg-deep-blue focus:outline-none focus:border-main-blue focus:ring-4 focus:ring-blue-100 focus:bg-button-fucous-blue"
                 type="button"
               >
                 Review your question
               </button>
+              {/* <LargeBtn width={"300px"}>Review your question</LargeBtn>
+                // 왜 특정 css만 먹히지? width={"300px"} */}
             </div>
           </div>
-
-          {/* <aside className="bg-blue-200 w-96 p-6 lg:block hidden">aside</aside> */}
         </div>
       </div>
+
+      <Footer />
     </div>
   );
 };
