@@ -52,10 +52,10 @@ public class JwtProcessor {
 
     public Claims verifyJwtToken(String jwtToken) {
         return Jwts.parserBuilder()
-                .setSigningKey(Keys.hmacShaKeyFor(JwtProperties.SECRET.getBytes()))
+                .setSigningKey(Keys.hmacShaKeyFor(JwtProperties.SECRET.getBytes()))    // JWT 서명(signature) 검증을 위한 Secret Key 얻기
                 .build()
                 .parseClaimsJws(jwtToken)
-                .getBody();
+                .getBody();  // JWT 에서 Claims 를 파싱 -> 만약 정상적으로 파싱이 된다면, 서명 검증이 성공했다는 뜻이다.
     }
 
     // JWT 의 Bearer 부분 제거
