@@ -2,7 +2,7 @@ export const Sidebar = () => {
   return (
     <>
       <aside className="box-border flex-col hidden h-full p-4 space-y-4 lg:flex">
-        <ul className="shadow-md w-80 h-[540px] text-sm bg-main-yellow border border-border-yellow rounded">
+        <ul className="shadow-md h-[540px] text-sm bg-main-yellow border border-border-yellow rounded lg:w-80">
           <li className="px-4 py-3 font-bold border-b text-font-gray border-border-yellow bg-light-yellow">
             The overflow Blog
           </li>
@@ -141,7 +141,7 @@ export const Sidebar = () => {
           </li>
         </ul>
 
-        <div className="flex flex-col font-light border rounded shadow-md w-80">
+        <div className="flex flex-col font-light border rounded shadow-md lg:w-80">
           <strong className="px-4 py-3 border-b text-md h-11 text-font-gray bg-light-gray">
             Custom Filters
           </strong>
@@ -150,7 +150,7 @@ export const Sidebar = () => {
           </span>
         </div>
 
-        <div className="flex flex-col h-[275px] border rounded shadow-md w-80 font-light">
+        <div className="flex flex-col h-[275px] border rounded shadow-md lg:w-80 font-light">
           <strong className="px-4 py-3 border-b h-11 text-font-gray text-md bg-light-gray">
             Watched Tags
           </strong>
