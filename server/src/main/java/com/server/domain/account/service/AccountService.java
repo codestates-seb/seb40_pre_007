@@ -4,6 +4,8 @@ import com.server.domain.account.entity.Account;
 import com.server.domain.account.repository.AccountRepository;
 import com.server.global.helper.event.AccountRegistrationApplicationEvent;
 import com.server.global.security.utils.CustomAuthorityUtils;
+import com.server.global.temException.BusinessLogicException;
+import com.server.global.temException.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -33,7 +35,6 @@ public class AccountService {
 
         String encodePassword = passwordEncoder.encode(account.getPassword());
         account.setPassword(encodePassword);
-//        account.setRoles();
 
         List<String> roles = customAuthorityUtils.createRoles(account.getEmail());
         account.setRoles(roles);
@@ -66,7 +67,7 @@ public class AccountService {
     private void verifyExistsEmail(String email) {
         Optional<Account> account = accountRepository.findByEmail(email);
         if (account.isPresent()) {
-            throw new RuntimeException("해당 이메일을 가진 회원이 존재합니다.");
+            throw new BusinessLogicException(ExceptionCode.ACCOUNT_EXISTS);
         }
     }
 
