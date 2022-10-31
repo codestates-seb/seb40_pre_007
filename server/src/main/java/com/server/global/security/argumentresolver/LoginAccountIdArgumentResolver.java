@@ -22,10 +22,12 @@ public class LoginAccountIdArgumentResolver implements HandlerMethodArgumentReso
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
 
-        boolean hasLoginAccountIdAnnotation = parameter.hasParameterAnnotation(LoginAccountId.class);
-        boolean hasLongType = Long.class.isAssignableFrom(parameter.getParameterType());
-
-        return hasLoginAccountIdAnnotation && hasLongType;
+//        boolean hasLoginAccountIdAnnotation = parameter.hasParameterAnnotation(LoginAccountId.class);
+//        boolean hasLongType = Long.class.isAssignableFrom(parameter.getParameterType());
+//
+//        return hasLoginAccountIdAnnotation && hasLongType;
+        boolean hasLoginAcocuntAnnot = parameter.hasParameterAnnotation(LoginAccount.class);
+        return Account.class.equals(parameter.getParameterType());
 
     }
 
@@ -46,6 +48,6 @@ public class LoginAccountIdArgumentResolver implements HandlerMethodArgumentReso
         Account findAccount = accountRepository.findByEmail(accountEmail)
                 .orElseThrow(() -> new NoSuchElementException());
 
-        return findAccount.getId();
+        return findAccount;
     }
 }
