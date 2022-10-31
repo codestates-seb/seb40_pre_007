@@ -84,11 +84,13 @@ export const FacebookBtn = ({ text = "Log in" }) => {
 };
 
 // LagreBtn 사용시 props로 width를 전달할 수 있습니다.
+// width => 이유는 모르겠지만 특정 사이즈에서 적용되지 않습니다.(이유 모르겠어요... 죄송 ㅠㅠ -혜정)
 export const LargeBtn = ({ children, width = "full", onClick }) => {
-  console.log(onClick);
   return (
     <button
+      onClick={onClick}
       className={`w-[${width}] bg-main-blue py-[10px] border-button-border-gray border rounded-md  hover:bg-deep-blue focus:outline-none focus:border-main-blue focus:ring-4 focus:ring-blue-100 focus:bg-button-fucous-blue`}
+      type="submit"
     >
       <span className="text-white text-sm">{children}</span>
     </button>
@@ -102,6 +104,7 @@ export const SmallBtn = ({ children, bg = "main-blue", onClick }) => {
   return (
     <button
       onClick={onClick}
+      type="submit"
       className={`bg-${bg} hover:bg-${hoverColor} py-1.5 px-3 flex justify-center items-center border-button-border-blue border rounded-md max-h-12`}
     >
       <span className={`text-${textColor} text-sm whitespace-nowrap`}>

@@ -11,9 +11,9 @@ export const SignupForm = () => {
       </div>
       <div className="bg-white w-[300px] py-7 px-6 mt-2 rounded-md shadow-lg ">
         <form className="flex flex-col space-y-4">
-          <Input label={"Display name"} id={"displayName"} />
-          <Input label={"Email"} id={"email"} />
-          <Input label={"Password"} id={"password"} />
+          <Input label={"Display name"} />
+          <Input label={"Email"} />
+          <Input label={"Password"} />
           <p className="text-gray-500 text-sm top-0">
             Passwords must contain at least eight characters, including at least
             1 letter and 1 number.
