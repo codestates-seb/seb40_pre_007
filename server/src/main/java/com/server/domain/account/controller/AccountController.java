@@ -4,7 +4,6 @@ import com.server.domain.account.dto.PatchAccontDto;
 import com.server.domain.account.dto.PostAccountDto;
 import com.server.domain.account.entity.Account;
 import com.server.domain.account.service.AccountService;
-import com.server.global.security.argumentresolver.LoginAccountId;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,9 +27,7 @@ public class AccountController {
     }
 
     @PatchMapping("/profile")
-    public ResponseEntity<Account> patchAccount(@LoginAccountId Long accountId,
-                                                @RequestBody PatchAccontDto patchAccontDto) throws IOException{
-        patchAccontDto.setId(accountId);
+    public ResponseEntity<Account> patchAccount(@RequestBody PatchAccontDto patchAccontDto) throws IOException{
 
         Account dtoToAccount = patchAccontDto.toAccount();
 

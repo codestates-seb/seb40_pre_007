@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter @Setter
@@ -34,10 +35,8 @@ public class Account extends BaseTimeEntity {
     private String content;
 
     // Account 의 권한 정보 테이블과 매핑되는 정보
-    // 컬랙션 타입의 필드는 @ElementCollection 애너테이션을 추가하여 별도의 엔티티 클래스를 만들지 않고도 매핑처리가 가능하다.
-    @Enumerated(EnumType.STRING)
     @ElementCollection(fetch = FetchType.EAGER)
-    private List<Role> roleList;
+    private List<String> roles = new ArrayList<>();
 
     public Account(String displayName, String email, String password) {
         this.displayName = displayName;
