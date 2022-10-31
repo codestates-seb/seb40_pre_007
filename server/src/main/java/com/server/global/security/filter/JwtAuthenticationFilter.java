@@ -29,7 +29,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private final AuthenticationManager authenticationManager;
     private final JwtProcessor jwtProcessor;
 
-    // json 타입의 데이터로만 로그인을 진행
+    // json 타입의 데이터로만 로그인을  진행
     private static final String CONTENT_TYPE = "application/json";
 
 

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-// AuthorizationFilter 의 JWT 검증 과정에서 AuthenticationException 이 발생할 경우 호출되는 핸들러 같은 역할
+// AuthorizationFilter 의 JWT 검증 과정에서 AuthenticationException 이 발생할 경우 호출되는 핸들러 같은  역할
 @Component
 @Slf4j
 public class AccountAuthenticationEntryPoint implements AuthenticationEntryPoint {
