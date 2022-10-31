@@ -1,8 +1,8 @@
 package com.server.domain.board.service;
 
 import com.server.domain.board.entity.Board;
-import com.server.global.exception.BusinessLogicException;
-import com.server.global.exception.ExceptionCode;
+import com.server.global.temException.BusinessLogicException;
+import com.server.global.temException.ExceptionCode;
 import com.server.domain.board.repository.BoardRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
