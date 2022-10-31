@@ -1,9 +1,9 @@
 package com.server.domain.board.service;
 
 import com.server.domain.board.entity.Board;
-import com.server.global.exception.BusinessLogicException;
-import com.server.global.exception.ExceptionCode;
 import com.server.domain.board.repository.BoardRepository;
+import com.server.global.temException.BusinessLogicException;
+import com.server.global.temException.ExceptionCode;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -22,6 +22,12 @@ public class BoardService {
 
     // 질문 게시글 생성
     public Board createBoard(Board board){
+//        if(board.getTitle().length()==0){
+//            throw new BusinessLogicException(ExceptionCode.BOARD_TITLE_NOT_FOUND);
+//        }
+//        if(board.getContent().length()==0){
+//            throw new BusinessLogicException(ExceptionCode.BOARD_CONTENT_NOT_FOUND);
+//        }
 
         return boardRepository.save(board);
 

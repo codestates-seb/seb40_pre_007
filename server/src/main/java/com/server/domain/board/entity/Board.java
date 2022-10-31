@@ -48,7 +48,8 @@ public class Board extends BaseTimeEntity {
 
     // 추후 status에 대한 논의 필요
     public enum BoardStatus {
-        BOARD_ACTIVE("활성중");
+        BOARD_ACTIVE("활성중"),
+        BOARD_INACTIVE("비활성중");
 
         @Getter
         private String status;
