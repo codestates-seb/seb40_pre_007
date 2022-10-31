@@ -1,0 +1,12 @@
+package com.server.global.security.argumentresolver;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class Principal {
+
+    private Long id;
+    private String email;
+}
