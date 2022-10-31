@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Slf4j
-@RestControllerAdvice// Controller클래스에서 발생하는 RequestBody유효성 검증에 대한 에러 처리
+@RestControllerAdvice    // Controller클래스 에서 발생하는 RequestBody 유효성 검증에 대한 에러 처리
 public class GlobalExceptionAdvice {
 
     @ExceptionHandler
@@ -25,6 +25,8 @@ public class GlobalExceptionAdvice {
     public ErrorResponse handleMethodArgumentNotValidException(//유효성 검증 예외처리
                                                                MethodArgumentNotValidException e) {
         final ErrorResponse response = ErrorResponse.of(e.getBindingResult());
+        response.setStatus(400);
+        response.setMessage("필요한 파라미터가 존재하지 않습니다.");
 
         return response;
     }

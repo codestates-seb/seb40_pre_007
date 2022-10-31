@@ -1,6 +1,5 @@
 package com.server.global.security.exception;
 
-import com.server.global.exception.ExceptionCode;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;

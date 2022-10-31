@@ -1,4 +1,4 @@
-package com.server.global.exception;
+package com.server.global.security.exception;
 
 import lombok.Getter;
 

@@ -22,12 +22,12 @@ public class BoardService {
 
     // 질문 게시글 생성
     public Board createBoard(Board board){
-//        if(board.getTitle().length()==0){
-//            throw new BusinessLogicException(ExceptionCode.BOARD_TITLE_NOT_FOUND);
-//        }
-//        if(board.getContent().length()==0){
-//            throw new BusinessLogicException(ExceptionCode.BOARD_CONTENT_NOT_FOUND);
-//        }
+        if(board.getTitle() == null){
+            throw new BusinessLogicException(ExceptionCode.BOARD_TITLE_NOT_FOUND);
+        }
+        if(board.getContent() == null){
+            throw new BusinessLogicException(ExceptionCode.BOARD_CONTENT_NOT_FOUND);
+        }
 
         return boardRepository.save(board);
 
