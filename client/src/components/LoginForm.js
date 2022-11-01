@@ -20,11 +20,10 @@ export const LoginForm = () => {
   const onValid = ({ email, password }) => {
     // json-server 테스트시 => email
     // 실제 서버 => username
+    const payload = { email, password };
+
     client
-      .post("/login", {
-        email,
-        password,
-      })
+      .post("/api/login", JSON.stringify(payload))
       .then((res) => {
         if (res.data.accessToken)
           localStorage.setItem("accessToken", res.data.accessToken);
@@ -34,9 +33,11 @@ export const LoginForm = () => {
       })
       .catch((err) => {
         setFailedMsg(err.response.data);
-        setErrorMsg({});
+        setErrorMsg("");
       });
   };
+
+  console.log(failedMsg);
 
   // 유효성 검사 실패시 input 클래스 변경 로직
   const onInValid = (error) => {
@@ -82,7 +83,10 @@ export const LoginForm = () => {
           <LargeBtn>Log in</LargeBtn>
 
           {failedMsg ? (
-            <span className="text-xs text-red-500 m-auto">{failedMsg}</span>
+            <span className="text-xs text-red-500 m-auto">
+              {"로그인 실패시 서버 응답이 이곳에 출력됩니다. 현재 오류가 발생하여 추후 수정 예정입니다 (__)" ||
+                failedMsg}
+            </span>
           ) : null}
         </form>
       </div>
