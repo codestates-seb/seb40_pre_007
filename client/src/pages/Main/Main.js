@@ -17,11 +17,6 @@ export const Main = () => {
     setUserData(response.data);
   };
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    navigate(`/${userData.id}`);
-  };
-
   const askClick = (e) => {
     e.preventDefault();
     navigate(`/ask`);
@@ -30,9 +25,6 @@ export const Main = () => {
   useEffect(() => {
     getUserData();
   }, []);
-
-  console.log(userData.length);
-  console.log(userData);
 
   return (
     <div className="flex flex-col w-screen h-screen">
@@ -80,7 +72,7 @@ export const Main = () => {
               </span>
             </div>
 
-            <ul className="pr-6 divide-y divide-line-gray">
+            <ul className="pr-6 divide-y divide-line-gray pb-80">
               {userData.map((data) => {
                 return (
                   <Question
@@ -89,7 +81,6 @@ export const Main = () => {
                     title={data.title}
                     content={data.content}
                     boardStatus={data.boardStatus}
-                    onClick={handleClick}
                   />
                 );
               })}
