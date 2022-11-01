@@ -1,9 +1,11 @@
 package com.server.domain.board.controller;
 
+import com.server.domain.account.entity.Account;
 import com.server.domain.board.dto.*;
 import com.server.domain.board.entity.Board;
 import com.server.domain.board.mapper.BoardMapper;
 import com.server.domain.board.service.BoardService;
+import com.server.global.security.argumentresolver.LoginAccount;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -28,14 +30,15 @@ public class BoardController {
 
     // 질문 게시글 작성
     @PostMapping
-    public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto)throws Exception{
+    public ResponseEntity postBoard(@Valid @RequestBody BoardPostDto boardDto,
+                                    @LoginAccount Account account)throws Exception{
 
-        Board board =
-                boardService.createBoard(mapper.boardPostDtoToBoard(boardDto));
+        Board board = mapper.boardPostDtoToBoard(boardDto);
 
+        Board savedBoard = boardService.createBoard(board, account);
 
         return new ResponseEntity<>(
-                new SingleResponseDto<>(mapper.boardToBoardResponseDto(board)), HttpStatus.CREATED);
+                new SingleResponseDto<>(mapper.boardToBoardResponseDto(savedBoard)), HttpStatus.CREATED);
 
     }
 
@@ -65,33 +68,26 @@ public class BoardController {
     // 게시글 수정
     @PatchMapping("/{board-id}")
     public ResponseEntity patchBoard(@PathVariable("board-id") @Positive long boardId,
-                             @Valid @RequestBody BoardPatchDto boardPatchDto){
+                                     @Valid @RequestBody BoardPatchDto boardPatchDto,
+                                     @LoginAccount Account account){
 
         boardPatchDto.setBoardId(boardId);
 
-        Board board =
-                boardService.updateBoard(mapper.boardPatchDtoToBoard(boardPatchDto));
+        Board board = mapper.boardPatchDtoToBoard(boardPatchDto);
+
+        Board savedBoard = boardService.updateBoard(board, account);
+
         return new ResponseEntity<>(
-                new SingleResponseDto<>(mapper.boardToBoardResponseDto(board)),
+                new SingleResponseDto<>(mapper.boardToBoardResponseDto(savedBoard)),
                 HttpStatus.OK);
     }
 
     @DeleteMapping("/{board-id}")
-    public ResponseEntity deleteBoard(
-            @PathVariable("board-id") @Positive long boardId){
-        boardService.deleteBoard(boardId);
+    public String deleteBoard(@PathVariable("board-id") @Positive long boardId,
+                                      @LoginAccount Account account){
 
-        return new ResponseEntity(HttpStatus.NO_CONTENT);
+        boardService.deleteBoard(boardId, account);
+
+        return "success board deleted";
     }
-    // 단일 게시글 조회수 조회
-//    @GetMapping("/{board-id}/views")
-//    public Long getViews(@PathVariable("board-id") long boardId){
-//
-//        View views = new View();
-//
-//        return views.getCount();
-//    }
-
-
-
 }

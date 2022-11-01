@@ -3,11 +3,15 @@ package com.server.domain.board.dto;
 import com.server.domain.board.entity.Board;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 public class BoardPatchDto {
 
     private long boardId;
+
     private String title;
+
     private String content;
 
     public Board toBoard(){
