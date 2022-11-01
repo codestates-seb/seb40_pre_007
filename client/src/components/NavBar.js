@@ -7,15 +7,31 @@ import { makeClassName } from "../libs/makeClassName";
 import { NavBarBtns } from "./NavBarBtns";
 import { SmallBtn } from "./Buttons";
 
+import { useRecoilState } from "recoil";
+import { isLoginState } from "../recoil/atoms";
+
+import { useNavigate } from "react-router-dom";
+
 export const NavBar = () => {
+  // searchBar 드롭다운 관련 상태
   const [isSearchBarClick, setIsSearchBarClick] = useState(false);
 
-  // 로그인 기능 구현 전 임시 상태
-  const [isLogin, setIsLogin] = useState(false);
-  // Login버튼에 등록
-  const onLogin = () => setIsLogin(true);
-  // 각종 아이콘 클릭시 동작하도록 등록
-  const onLogout = () => setIsLogin(false);
+  // redirect
+  const naviagte = useNavigate();
+
+  // 로그인 관련 전역 상태
+  const [isLogin, setIsLogin] = useRecoilState(isLoginState);
+
+  // 로그인 버튼 : 로그인 페이지로 이동
+  const onLogin = () => {
+    naviagte("/");
+  };
+  // 로그아웃 버튼
+  const onLogout = () => {
+    setIsLogin(false);
+    localStorage.removeItem("accessToken");
+    naviagte("/main");
+  };
 
   return (
     <header className="bg-white fixed w-screen flex items-center h-[60px] border-t-4 border-t-orange-400 border-b-gray-200 shadow-md pr-4 lg:justify-center top-0 md:pl-1 z-10">
@@ -109,7 +125,9 @@ export const NavBar = () => {
             <SmallBtn bg={"button-blue"} onClick={onLogin}>
               Log in
             </SmallBtn>
-            <SmallBtn>Sign up</SmallBtn>
+            <Link to={"/signup"}>
+              <SmallBtn>Sign up</SmallBtn>
+            </Link>
           </div>
         )}
       </div>
