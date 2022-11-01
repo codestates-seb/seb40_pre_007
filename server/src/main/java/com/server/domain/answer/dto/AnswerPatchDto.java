@@ -11,7 +11,7 @@ import javax.validation.constraints.NotBlank;
 public class AnswerPatchDto {
     private long answerId;
 
-    @NotBlank
+    @NotBlank(message = "내용을 입력하세요.")
     private String content;
 
     public Answer toAnswer() {
