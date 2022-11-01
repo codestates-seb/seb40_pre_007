@@ -4,9 +4,39 @@ import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 import { NavBar } from "../../components/NavBar";
 import { Footer } from "../../components/Footer";
 import { BaseEditor } from "../../components/BaseEditor";
-// import { LargeBtn } from "../../components/Buttons";
+import { useRef, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { client } from "../../client/client";
 
 export const Ask = () => {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const navigate = useNavigate();
+  const editorRef = useRef(null);
+
+  // .post("/api/boards")
+  const handleSubmit = () => {
+    client
+      .post("/data", {
+        title: title,
+        content: content,
+      })
+      .then((res) => {
+        console.log(res);
+        navigate(`/main`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log("submit");
+  };
+
+  const handleEditorChange = useCallback(() => {
+    if (!editorRef.current) return;
+
+    setContent(editorRef.current.getInstance().getMarkdown());
+  }, []);
+  console.log(editorRef);
   return (
     <div className="flex flex-col h-screen w-screen">
       <NavBar />
@@ -89,6 +119,8 @@ export const Ask = () => {
                           placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
                           data-min-length="15"
                           data-max-length="150"
+                          value={title}
+                          onChange={(e) => setTitle(e.target.value)}
                         />
                       </div>
                     </div>
@@ -148,12 +180,19 @@ export const Ask = () => {
                     </div>
                   </div>
                 </div>
-                <BaseEditor height="600px" />
+                <BaseEditor
+                  value={content}
+                  height="600px"
+                  setContent={setContent}
+                  editorRef={editorRef}
+                  onChange={handleEditorChange}
+                />
               </div>
 
               <button
                 className="w-48 text-white py-4 mt-5 bg-main-blue border-button-border-gray border rounded-md  hover:bg-deep-blue focus:outline-none focus:border-main-blue focus:ring-4 focus:ring-blue-100 focus:bg-button-fucous-blue"
                 type="button"
+                onClick={handleSubmit}
               >
                 Review your question
               </button>
