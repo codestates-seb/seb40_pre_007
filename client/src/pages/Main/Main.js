@@ -26,6 +26,34 @@ export const Main = () => {
     getUserData();
   }, []);
 
+  const NewestFilter = (e) => {
+    e.preventDefault();
+    const data = userData.slice();
+    data.sort((a, b) => {
+      return -a.createdAt.localeCompare(b.createdAt);
+    });
+
+    setUserData(data);
+  };
+
+  const OldestFilter = (e) => {
+    e.preventDefault();
+    const data = userData.slice();
+    data.sort((a, b) => {
+      return a.createdAt.localeCompare(b.createdAt);
+    });
+    setUserData(data);
+  };
+
+  const votesFilter = (e) => {
+    e.preventDefault();
+    const data = userData.slice();
+    data.sort((a, b) => {
+      return b.votes - a.votes;
+    });
+    setUserData(data);
+  };
+
   return (
     <div className="flex flex-col w-screen h-screen">
       <NavBar />
@@ -46,6 +74,7 @@ export const Main = () => {
                 <button
                   className="inline-block p-2 text-gray-700 hover:bg-main-gray focus:bg-main-gray"
                   title="Newest Product"
+                  onClick={NewestFilter}
                 >
                   Newest
                 </button>
@@ -53,6 +82,7 @@ export const Main = () => {
                 <button
                   className="inline-block p-2 text-gray-700 hover:bg-main-gray focus:bg-main-gray"
                   title="Oldest Product"
+                  onClick={OldestFilter}
                 >
                   Oldest
                 </button>
@@ -66,6 +96,7 @@ export const Main = () => {
                 <button
                   className="inline-block p-2 text-gray-700 hover:bg-main-gray focus:bg-main-gray"
                   title="votes Product"
+                  onClick={votesFilter}
                 >
                   votes
                 </button>
@@ -81,6 +112,7 @@ export const Main = () => {
                     title={data.title}
                     content={data.content}
                     boardStatus={data.boardStatus}
+                    votes={data.votes}
                   />
                 );
               })}

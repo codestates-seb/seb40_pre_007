@@ -20,6 +20,7 @@ export const Ask = () => {
       .post("/data", {
         title: title,
         content: content,
+        createdAt: new Date().toISOString(),
       })
       .then((res) => {
         console.log(res);
@@ -224,8 +225,6 @@ export const Ask = () => {
               >
                 Review your question
               </button>
-              {/* <LargeBtn width={"300px"}>Review your question</LargeBtn>
-                // 왜 특정 css만 먹히지? width={"300px"} */}
             </div>
           </div>
         </div>
