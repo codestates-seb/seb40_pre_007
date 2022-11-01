@@ -4,6 +4,8 @@ import com.server.domain.answer.entity.Answer;
 import com.server.domain.answer.repository.AnswerRepository;
 import com.server.domain.board.entity.Board;
 import com.server.domain.board.repository.BoardRepository;
+import com.server.global.temException.BusinessLogicException;
+import com.server.global.temException.ExceptionCode;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -53,14 +55,14 @@ public class AnswerService {
 
     private Board verifiedBoardId(long boardId) {
         Board findBoard = boardRepository.findById(boardId)
-                .orElseThrow(() -> new NoSuchElementException(("질문 게시물을 찾을 수 없습니다.")));
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.BOARD_NOT_FOUND));
 
         return findBoard;
     }
 
     private Answer verifiedAnswerId(long answerId) {
         Answer findAnswer = answerRepository.findById(answerId)
-                .orElseThrow(() -> new NoSuchElementException(("해당 답변을 찾을 수 없습니다.")));
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
 
         return findAnswer;
     }
