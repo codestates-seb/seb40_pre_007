@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.io.IOException;
 
 @RestController
@@ -20,7 +21,7 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping
-    public String postAccount(@RequestBody PostAccountDto postAccountDto) throws IOException {
+    public String postAccount(@Valid @RequestBody PostAccountDto postAccountDto) throws Exception {
         Account account = postAccountDto.toAccount();
         accountService.createAccount(account);
 

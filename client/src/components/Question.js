@@ -1,15 +1,31 @@
-export const Question = () => {
+import { useNavigate } from "react-router-dom";
+
+export const Question = ({ id, title, content }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate(`/${id}`);
+  };
+
   return (
-    <li className="flex flex-nowrap p-4 w-full border border-x-0 border-b-0 border-t-line-gray ">
+    <li
+      key={id}
+      className="flex flex-nowrap p-4 w-full border border-x-0 border-b-0 border-t-line-gray "
+    >
       <div className="flex flex-col  w-28 flex-shrink-0 items-end text-font-gray mr-5 gap-1">
         <div className="text-sm text-black">0 votes</div>
         <div className="text-sm">10 answers</div>
         <div className="text-sm">100 views</div>
       </div>
       <div className="flex flex-col justify-between w-full">
-        <div className="text-lg text-blue-500">
-          Script to copy all text from one file into template file
-        </div>
+        <button
+          onClick={handleClick}
+          className="text-lg text-left text-blue-500"
+        >
+          {title}
+        </button>
+        <div className="text-lg ">{content}</div>
         <div className="flex justify-end pr-5 items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -3,8 +3,37 @@ import { NavBar } from "../../components/NavBar";
 import { Question } from "../../components/Question";
 import { Sidebar } from "../../components/Sidebar";
 import { Footer } from "../../components/Footer";
+import { LargeBtn } from "../../components/Buttons";
+import { client } from "../../client/client";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Main = () => {
+  const [userData, setUserData] = useState([]);
+  const navigate = useNavigate();
+
+  const getUserData = async () => {
+    const response = await client.get("/data");
+    setUserData(response.data);
+  };
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    navigate(`/${userData.id}`);
+  };
+
+  const askClick = (e) => {
+    e.preventDefault();
+    navigate(`/ask`);
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  console.log(userData.length);
+  console.log(userData);
+
   return (
     <div className="flex flex-col w-screen h-screen">
       <NavBar />
@@ -14,7 +43,9 @@ export const Main = () => {
           <div className="w-full">
             <div className="flex justify-between p-6 mb-6">
               <div className="text-3xl">All Questions</div>
-              <button>Ask Questions</button>
+              <LargeBtn onClick={askClick} width="150px">
+                Ask Questions
+              </LargeBtn>
             </div>
             <div className="flex items-center justify-between p-6">
               <div className="text-lg">777 questions</div>
@@ -50,7 +81,18 @@ export const Main = () => {
             </div>
 
             <ul className="pr-6 divide-y divide-line-gray">
-              <Question />
+              {userData.map((data) => {
+                return (
+                  <Question
+                    key={data.id}
+                    id={data.id}
+                    title={data.title}
+                    content={data.content}
+                    boardStatus={data.boardStatus}
+                    onClick={handleClick}
+                  />
+                );
+              })}
             </ul>
           </div>
           <Sidebar />

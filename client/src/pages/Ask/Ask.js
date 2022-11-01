@@ -4,9 +4,39 @@ import "@toast-ui/editor-plugin-code-syntax-highlight/dist/toastui-editor-plugin
 import { NavBar } from "../../components/NavBar";
 import { Footer } from "../../components/Footer";
 import { BaseEditor } from "../../components/BaseEditor";
-// import { LargeBtn } from "../../components/Buttons";
+import { useRef, useState, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
+import { client } from "../../client/client";
 
 export const Ask = () => {
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const navigate = useNavigate();
+  const editorRef = useRef(null);
+
+  // .post("/api/boards")
+  const handleSubmit = () => {
+    client
+      .post("/data", {
+        title: title,
+        content: content,
+      })
+      .then((res) => {
+        console.log(res);
+        navigate(`/main`);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log("submit");
+  };
+
+  const handleEditorChange = useCallback(() => {
+    if (!editorRef.current) return;
+
+    setContent(editorRef.current.getInstance().getMarkdown());
+  }, []);
+  console.log(editorRef);
   return (
     <div className="flex flex-col h-screen w-screen">
       <NavBar />
@@ -89,6 +119,8 @@ export const Ask = () => {
                           placeholder="e.g. Is there an R function for finding the index of an element in a vector?"
                           data-min-length="15"
                           data-max-length="150"
+                          value={title}
+                          onChange={(e) => setTitle(e.target.value)}
                         />
                       </div>
                     </div>
@@ -133,7 +165,6 @@ export const Ask = () => {
                   </div>
                 </div>
               </div>
-
               <div className="lg:w-[70%] w-full border border-gray-400 rounded-md p-6">
                 <div className="flex flex-col">
                   <div className="flex--item">
@@ -148,12 +179,48 @@ export const Ask = () => {
                     </div>
                   </div>
                 </div>
-                <BaseEditor height="600px" />
+                <BaseEditor
+                  value={content}
+                  height="600px"
+                  setContent={setContent}
+                  editorRef={editorRef}
+                  onChange={handleEditorChange}
+                />
+              </div>
+              <div className="lg:w-[70%] w-full my-3 border border-gray-400 flex-shrink-0 rounded-md">
+                <div className="flex flex-col flex-shrink-0 p-6 w-full">
+                  <div className="flex flex-col gap-y-2">
+                    <div className="flex flex-col ">
+                      <div className="flex--item">
+                        <div className="font-bold">Tags</div>
+                      </div>
+                      <div className="d-flex flex--item md:fd-column">
+                        <div className="my-2">
+                          Add up to 5 tags to describe what your question is
+                          about. Start typing to see suggestions.
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex">
+                      <input
+                        className="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400"
+                        id="title"
+                        name="title"
+                        type="text"
+                        maxLength="300"
+                        placeholder="e.g. (ajax objective-c r)"
+                        data-min-length="15"
+                        data-max-length="150"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <button
                 className="w-48 text-white py-4 mt-5 bg-main-blue border-button-border-gray border rounded-md  hover:bg-deep-blue focus:outline-none focus:border-main-blue focus:ring-4 focus:ring-blue-100 focus:bg-button-fucous-blue"
                 type="button"
+                onClick={handleSubmit}
               >
                 Review your question
               </button>
