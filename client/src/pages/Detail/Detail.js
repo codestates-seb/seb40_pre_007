@@ -5,8 +5,21 @@ import { Contents } from "../../components/Contents";
 import { Sidebar } from "../../components/Sidebar";
 import { Footer } from "../../components/Footer";
 import { Answers } from "../../components/Answers";
+import { useParams } from "react-router-dom";
+import { client } from "../../client/client";
+import { useState, useEffect } from "react";
 
 export const Detail = () => {
+  const { id } = useParams();
+  const [userData, setUserData] = useState({});
+
+  useEffect(() => {
+    client
+      .get(`/data/${id}`)
+      .then((res) => setUserData(res.data))
+      .catch((err) => console.log(err));
+  }, []);
+
   return (
     <div className="flex flex-col w-screen h-screen">
       <NavBar />
@@ -17,9 +30,7 @@ export const Detail = () => {
             {/* title */}
             <div className="pb-6 space-y-6 border-b">
               <div className="flex justify-between">
-                <div className="mr-5 text-3xl">
-                  질문 타이틀이 이 곳에 보입니다. 아아우우
-                </div>
+                <div className="mr-5 text-3xl">{userData.title}</div>
                 <SmallBtn>Ask Questions</SmallBtn>
               </div>
 
@@ -37,19 +48,14 @@ export const Detail = () => {
             {/* 본문 */}
             <div className="box-border flex flex-col w-full h-full pt-3 lg:flex-row">
               <div className="flex flex-col w-full px-2">
-                <Contents />
+                <Contents userData={userData} setUserData={setUserData} />
                 <Answers />
-                {/* <section className="flex flex-col w-full h-full bg-main-yellow ">
-                  <span className="m-auto text-2xl">Answer 영역❤️</span>
-                </section> */}
               </div>
-              {/* <Sidebar /> */}
               <Sidebar />
             </div>
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
       <Footer />
     </div>
   );
