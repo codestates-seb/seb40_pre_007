@@ -165,7 +165,6 @@ export const Ask = () => {
                   </div>
                 </div>
               </div>
-
               <div className="lg:w-[70%] w-full border border-gray-400 rounded-md p-6">
                 <div className="flex flex-col">
                   <div className="flex--item">
@@ -187,6 +186,35 @@ export const Ask = () => {
                   editorRef={editorRef}
                   onChange={handleEditorChange}
                 />
+              </div>
+              <div className="lg:w-[70%] w-full my-3 border border-gray-400 flex-shrink-0 rounded-md">
+                <div className="flex flex-col flex-shrink-0 p-6 w-full">
+                  <div className="flex flex-col gap-y-2">
+                    <div className="flex flex-col ">
+                      <div className="flex--item">
+                        <div className="font-bold">Tags</div>
+                      </div>
+                      <div className="d-flex flex--item md:fd-column">
+                        <div className="my-2">
+                          Add up to 5 tags to describe what your question is
+                          about. Start typing to see suggestions.
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex">
+                      <input
+                        className="w-full py-2 px-3 border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-400 focus:border-blue-400"
+                        id="title"
+                        name="title"
+                        type="text"
+                        maxLength="300"
+                        placeholder="e.g. (ajax objective-c r)"
+                        data-min-length="15"
+                        data-max-length="150"
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
 
               <button
