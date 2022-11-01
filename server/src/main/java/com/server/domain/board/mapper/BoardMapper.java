@@ -28,7 +28,7 @@ public interface BoardMapper {
         boardResponseDto.setContent(board.getContent());
         boardResponseDto.setCreatedAt(board.getCreatedAt());
         boardResponseDto.setUpdatedAt(board.getUpdatedAt());
-//        boardResponseDto.setAccountNickName(board.getAccount().getDisplayName());
+        boardResponseDto.setAccountNickName(board.getAccount().getDisplayName());
         boardResponseDto.setAnswerList(answersToAnswerResponseDtos(answers));
 
         return boardResponseDto;
@@ -43,7 +43,7 @@ public interface BoardMapper {
                         .answerId(answer.getAnswerId())
                         .content(answer.getContent())
                         .updatedAt(answer.getUpdatedAt())
-//                        .accountNickName(answer.getAccount().getDisplayName())
+                        .accountNickName(answer.getAccount().getDisplayName())
                         .build())
                 .collect(Collectors.toList());
     }

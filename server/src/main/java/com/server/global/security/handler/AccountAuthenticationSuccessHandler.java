@@ -26,6 +26,7 @@ public class AccountAuthenticationSuccessHandler implements AuthenticationSucces
 
         String authenticationSuccessJson = new Gson().toJson(authenticationSuccess);
 
+        response.setStatus(202);
         response.getWriter().write(authenticationSuccessJson);
     }
 }
