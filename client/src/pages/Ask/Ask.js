@@ -20,6 +20,7 @@ export const Ask = () => {
       .post("/data", {
         title: title,
         content: content,
+        createdAt: new Date().toISOString(),
       })
       .then((res) => {
         console.log(res);
