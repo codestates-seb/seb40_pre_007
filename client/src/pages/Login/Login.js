@@ -3,7 +3,20 @@ import { LoginForm } from "../../components/LoginForm";
 
 import Icon from "../../assets/Stack_Overflow-Icon.png";
 
+import { useRecoilValue } from "recoil";
+import { isLoginState } from "../../recoil/atoms";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
 export const Login = () => {
+  const isLogin = useRecoilValue(isLoginState);
+
+  // 로그인 된 상태일 경우 로그인 페이지 접근 금지
+  const navigator = useNavigate();
+  useEffect(() => {
+    if (isLogin) navigator("/main");
+  }, []);
+
   return (
     <div className="h-screen w-screen bg-main-gray flex justify-center items-center flex-col">
       <NavBar />
