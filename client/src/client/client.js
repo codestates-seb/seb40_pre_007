@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const accessToken = localStorage.getItem("accessToken") || "";
 
 export const client = axios.create({

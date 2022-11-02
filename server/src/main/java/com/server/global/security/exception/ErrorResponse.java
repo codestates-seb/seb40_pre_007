@@ -1,7 +1,5 @@
-package com.server.global.temException;
+package com.server.global.security.exception;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
@@ -11,46 +9,44 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-@Data
-@AllArgsConstructor
+@Getter
 public class ErrorResponse {
-
     private int status;
     private String message;
-    private List<FieldError> fieldErrors; // (1)
-    private List<ConstraintViolationError> violationErrors;  // (2)
+    private List<FieldError> fieldErrors;
+    private List<ConstraintViolationError> violationErrors;
 
-    private ErrorResponse(int status, String message){
+    private ErrorResponse(int status, String message) {
         this.status = status;
         this.message = message;
     }
-    // (3)
+
     private ErrorResponse(final List<FieldError> fieldErrors,
                           final List<ConstraintViolationError> violationErrors) {
         this.fieldErrors = fieldErrors;
         this.violationErrors = violationErrors;
     }
 
-    // (4) BindingResult에 대한 ErrorResponse 객체 생성
     public static ErrorResponse of(BindingResult bindingResult) {
         return new ErrorResponse(FieldError.of(bindingResult), null);
     }
 
-    // (5) Set<ConstraintViolation<?>> 객체에 대한 ErrorResponse 객체 생성
     public static ErrorResponse of(Set<ConstraintViolation<?>> violations) {
         return new ErrorResponse(null, ConstraintViolationError.of(violations));
     }
 
     public static ErrorResponse of(ExceptionCode exceptionCode) {
-        return new ErrorResponse(exceptionCode.getStatus(),exceptionCode.getMessage());
+        return new ErrorResponse(exceptionCode.getStatus(), exceptionCode.getMessage());
     }
 
     public static ErrorResponse of(HttpStatus httpStatus) {
         return new ErrorResponse(httpStatus.value(), httpStatus.getReasonPhrase());
     }
 
+    public static ErrorResponse of(HttpStatus httpStatus, String message) {
+        return new ErrorResponse(httpStatus.value(), message);
+    }
 
-    // (6) Field Error 가공
     @Getter
     public static class FieldError {
         private String field;
@@ -76,7 +72,6 @@ public class ErrorResponse {
         }
     }
 
-    // (7) ConstraintViolation Error 가공
     @Getter
     public static class ConstraintViolationError {
         private String propertyPath;
@@ -101,8 +96,4 @@ public class ErrorResponse {
         }
     }
 
-    public static ErrorResponse of(HttpStatus httpStatus, String message) {
-        return new ErrorResponse(httpStatus.value(), message);
-    }
 }
-

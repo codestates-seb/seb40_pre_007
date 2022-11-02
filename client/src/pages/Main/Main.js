@@ -3,8 +3,57 @@ import { NavBar } from "../../components/NavBar";
 import { Question } from "../../components/Question";
 import { Sidebar } from "../../components/Sidebar";
 import { Footer } from "../../components/Footer";
+import { LargeBtn } from "../../components/Buttons";
+import { client } from "../../client/client";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Main = () => {
+  const [userData, setUserData] = useState([]);
+  const navigate = useNavigate();
+
+  const getUserData = async () => {
+    const response = await client.get("/data");
+    setUserData(response.data);
+  };
+
+  const askClick = (e) => {
+    e.preventDefault();
+    navigate(`/ask`);
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  const NewestFilter = (e) => {
+    e.preventDefault();
+    const data = userData.slice();
+    data.sort((a, b) => {
+      return -a.createdAt.localeCompare(b.createdAt);
+    });
+
+    setUserData(data);
+  };
+
+  const OldestFilter = (e) => {
+    e.preventDefault();
+    const data = userData.slice();
+    data.sort((a, b) => {
+      return a.createdAt.localeCompare(b.createdAt);
+    });
+    setUserData(data);
+  };
+
+  const votesFilter = (e) => {
+    e.preventDefault();
+    const data = userData.slice();
+    data.sort((a, b) => {
+      return b.votes - a.votes;
+    });
+    setUserData(data);
+  };
+
   return (
     <div className="flex flex-col w-screen h-screen">
       <NavBar />
@@ -14,7 +63,9 @@ export const Main = () => {
           <div className="w-full">
             <div className="flex justify-between p-6 mb-6">
               <div className="text-3xl">All Questions</div>
-              <button>Ask Questions</button>
+              <LargeBtn onClick={askClick} width="150px">
+                Ask Questions
+              </LargeBtn>
             </div>
             <div className="flex items-center justify-between p-6">
               <div className="text-lg">777 questions</div>
@@ -23,6 +74,7 @@ export const Main = () => {
                 <button
                   className="inline-block p-2 text-gray-700 hover:bg-main-gray focus:bg-main-gray"
                   title="Newest Product"
+                  onClick={NewestFilter}
                 >
                   Newest
                 </button>
@@ -30,6 +82,7 @@ export const Main = () => {
                 <button
                   className="inline-block p-2 text-gray-700 hover:bg-main-gray focus:bg-main-gray"
                   title="Oldest Product"
+                  onClick={OldestFilter}
                 >
                   Oldest
                 </button>
@@ -43,14 +96,26 @@ export const Main = () => {
                 <button
                   className="inline-block p-2 text-gray-700 hover:bg-main-gray focus:bg-main-gray"
                   title="votes Product"
+                  onClick={votesFilter}
                 >
                   votes
                 </button>
               </span>
             </div>
 
-            <ul className="pr-6 divide-y divide-line-gray">
-              <Question />
+            <ul className="pr-6 divide-y divide-line-gray pb-80">
+              {userData.map((data) => {
+                return (
+                  <Question
+                    key={data.id}
+                    id={data.id}
+                    title={data.title}
+                    content={data.content}
+                    boardStatus={data.boardStatus}
+                    votes={data.votes}
+                  />
+                );
+              })}
             </ul>
           </div>
           <Sidebar />

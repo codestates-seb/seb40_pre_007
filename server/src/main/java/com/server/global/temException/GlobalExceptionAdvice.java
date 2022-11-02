@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.validation.FieldError;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -12,17 +13,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import javax.validation.ConstraintViolationException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
-@RestControllerAdvice// Controller클래스에서 발생하는 RequestBody유효성 검증에 대한 에러 처리
+@RestControllerAdvice    // Controller클래스 에서 발생하는 RequestBody 유효성 검증에 대한 에러 처리
 public class GlobalExceptionAdvice {
-
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleMethodArgumentNotValidException(//유효성 검증 예외처리
                                                                MethodArgumentNotValidException e) {
         final ErrorResponse response = ErrorResponse.of(e.getBindingResult());
+        response.setStatus(400);
+        response.setMessage("필요한 파라미터가 존재하지 않습니다.");
 
         return response;
     }
