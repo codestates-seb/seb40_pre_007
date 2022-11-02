@@ -1,5 +1,6 @@
 package com.server.global.security.config;
 
+import com.server.domain.account.repository.AccountRepository;
 import com.server.global.security.filter.JwtAuthenticationFilter;
 import com.server.global.security.filter.JwtVerificationFilter;
 import com.server.global.security.handler.AccountAccessDeniedHandler;
@@ -33,6 +34,8 @@ public class SecurityConfig {
 
     private final JwtTokenizer jwtTokenizer;
     private final CustomAuthorityUtils authorityUtils; // 추가
+
+    private final AccountRepository accountRepository;
 
 
     @Bean
@@ -96,7 +99,7 @@ public class SecurityConfig {
 
             JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
             jwtAuthenticationFilter.setFilterProcessesUrl("/api/login");
-            jwtAuthenticationFilter.setAuthenticationSuccessHandler(new AccountAuthenticationSuccessHandler());
+            jwtAuthenticationFilter.setAuthenticationSuccessHandler(new AccountAuthenticationSuccessHandler(accountRepository));
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new AccountAuthenticationFailureHandler());
 
             JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, authorityUtils);
