@@ -15,8 +15,10 @@ export const Detail = () => {
 
   useEffect(() => {
     client
-      .get(`/data/${id}`)
-      .then((res) => setUserData(res.data))
+      .get(`/api/boards/${id}`)
+      .then((res) => {
+        setUserData(res.data.data);
+      })
       .catch((err) => console.log(err));
   }, []);
 
