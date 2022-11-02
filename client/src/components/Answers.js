@@ -5,12 +5,12 @@ import { BaseEditor } from "./BaseEditor";
 import { useCallback, useRef, useState } from "react";
 import { client } from "../client/client";
 
-export const Answers = ({ answerList, setAnswerList, id }) => {
+export const Answers = ({ answerList, id }) => {
   const answerCount = answerList.length;
+  console.log(answerList);
 
   const [content, setContent] = useState("");
   const editorRef = useRef(null);
-
   const handleEditorChange = useCallback(() => {
     if (!editorRef.current) return;
     setContent(editorRef.current.getInstance().getMarkdown());
@@ -21,11 +21,26 @@ export const Answers = ({ answerList, setAnswerList, id }) => {
       .post(`/api/${id}/answers`, {
         content,
       })
-      .then((res) => {
-        console.log(res);
-        setAnswerList([...answerList, { content }]);
+      .then(() => {
+        location.reload();
       })
-      .catch((err) => console.err(err));
+      .catch((err) => console.error(err));
+  };
+
+  // 작성중...
+  const onEdit = (e) => {
+    const answerId = e.target.id;
+    console.log(answerId);
+  };
+
+  const onDelete = (e) => {
+    const answerId = e.target.id;
+    client
+      .delete(`/api/answers/${answerId}`, {})
+      .then(() => {
+        location.reload();
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -40,10 +55,20 @@ export const Answers = ({ answerList, setAnswerList, id }) => {
             <div className="font-[#b5bfc4] flex justify-between items-end">
               {/* buttons */}
               <div className="space-x-3 text-font-gray text-[11px] md:text-sm ">
-                <button type="button" className="cursor-pointer">
+                <button
+                  type="button"
+                  className="cursor-pointer"
+                  id={el.answerId}
+                  onClick={onEdit}
+                >
                   Edit
                 </button>
-                <button type="button" className="cursor-pointer">
+                <button
+                  onClick={onDelete}
+                  type="button"
+                  className="cursor-pointer"
+                  id={el.answerId}
+                >
                   Delete
                 </button>
               </div>
@@ -59,7 +84,7 @@ export const Answers = ({ answerList, setAnswerList, id }) => {
 
                   <div className="flex flex-col justify-center ml-3 space-y-1">
                     <strong className="font-normal cursor-pointer text-deep-blue">
-                      Paul Mariotti
+                      {el.accountNickName}
                     </strong>
                   </div>
                 </div>
