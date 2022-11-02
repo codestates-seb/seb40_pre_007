@@ -17,6 +17,7 @@ export const Main = () => {
 
     setUserData(response.data.data);
   };
+  console.log(userData);
 
   const interestFilter = (e) => {
     e.preventDefault();
@@ -98,10 +99,10 @@ export const Main = () => {
             </div>
 
             <ul className="pr-6 divide-y divide-line-gray pb-80">
-              {userData.map((data) => {
+              {userData.map((data, i) => {
                 return (
                   <Question
-                    key={data.id}
+                    key={i}
                     id={data.boardId}
                     title={data.title}
                     content={data.content}
