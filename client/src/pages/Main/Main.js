@@ -13,8 +13,8 @@ export const Main = () => {
   const navigate = useNavigate();
 
   const getUserData = async () => {
-    const response = await client.get("/data");
-    setUserData(response.data);
+    const response = await client.get("/api/boards?page=1");
+    setUserData(response.data.data);
   };
 
   const askClick = (e) => {
@@ -108,7 +108,7 @@ export const Main = () => {
                 return (
                   <Question
                     key={data.id}
-                    id={data.id}
+                    id={data.boardId}
                     title={data.title}
                     content={data.content}
                     boardStatus={data.boardStatus}
