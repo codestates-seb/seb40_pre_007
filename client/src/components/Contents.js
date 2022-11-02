@@ -13,9 +13,13 @@ export const Contents = ({ userData }) => {
   //   Authorization: "Bearer { jwt 토큰 값}",
   // };
 
+  const handleEdit = () => {
+    navigate("/edit", { state: userData });
+  };
+
   const handleDelete = () => {
     client
-      .delete(`/data/${userData.id}`)
+      .delete(`/api/boards/${userData.id}`)
       .then(() => {
         console.log("deleted successfully!");
         navigate(`/main`);
@@ -113,7 +117,11 @@ export const Contents = ({ userData }) => {
             <button type="button" className="cursor-pointer">
               Share
             </button>
-            <button onClick="" type="button" className="cursor-pointer">
+            <button
+              onClick={handleEdit}
+              type="button"
+              className="cursor-pointer"
+            >
               Edit
             </button>
             <button
@@ -141,7 +149,6 @@ export const Contents = ({ userData }) => {
 
               <div className="flex flex-col justify-center ml-3 space-y-1">
                 <strong className="font-normal cursor-pointer text-deep-blue">
-                  {/* Paul Mariotti */}
                   {userData.accountNickName}
                 </strong>
 
