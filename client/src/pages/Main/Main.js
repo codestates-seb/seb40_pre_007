@@ -14,6 +14,7 @@ export const Main = () => {
 
   const getUserData = async () => {
     const response = await client.get("/api/boards?page=1");
+
     setUserData(response.data.data);
   };
 
@@ -41,15 +42,6 @@ export const Main = () => {
     const data = userData.slice();
     data.sort((a, b) => {
       return a.createdAt.localeCompare(b.createdAt);
-    });
-    setUserData(data);
-  };
-
-  const votesFilter = (e) => {
-    e.preventDefault();
-    const data = userData.slice();
-    data.sort((a, b) => {
-      return b.votes - a.votes;
     });
     setUserData(data);
   };
@@ -92,14 +84,6 @@ export const Main = () => {
                 >
                   interest
                 </button>
-
-                <button
-                  className="inline-block p-2 text-gray-700 hover:bg-main-gray focus:bg-main-gray"
-                  title="votes Product"
-                  onClick={votesFilter}
-                >
-                  votes
-                </button>
               </span>
             </div>
 
@@ -112,7 +96,6 @@ export const Main = () => {
                     title={data.title}
                     content={data.content}
                     boardStatus={data.boardStatus}
-                    votes={data.votes}
                   />
                 );
               })}

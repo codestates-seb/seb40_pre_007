@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export const Question = ({ id, title, content, votes }) => {
+export const Question = ({ id, title, content }) => {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -14,7 +14,6 @@ export const Question = ({ id, title, content, votes }) => {
       className="flex flex-nowrap p-4 w-full border border-x-0 border-b-0 border-t-line-gray "
     >
       <div className="flex flex-col  w-28 flex-shrink-0 items-end text-font-gray mr-5 gap-1">
-        <div className="text-sm text-black">{votes} votes</div>
         <div className="text-sm">10 answers</div>
         <div className="text-sm">100 views</div>
       </div>
