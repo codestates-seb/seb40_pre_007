@@ -108,6 +108,7 @@ export const Main = () => {
                     title={data.title}
                     content={data.content}
                     boardStatus={data.boardStatus}
+                    createdAt={data.createdAt}
                   />
                 );
               })}

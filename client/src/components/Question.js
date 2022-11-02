@@ -1,11 +1,36 @@
 import { useNavigate } from "react-router-dom";
 
-export const Question = ({ id, title, content, accountNickName }) => {
+export const Question = ({
+  id,
+  title,
+  content,
+  accountNickName,
+  createdAt,
+}) => {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.preventDefault();
     navigate(`/${id}`);
+  };
+
+  const elapsedTime = () => {
+    const now = new Date();
+    const past = new Date(createdAt);
+    const diff = now.getTime() - past.getTime();
+    const sec = Math.floor(diff / 1000);
+    const min = Math.floor(sec / 60);
+    const hour = Math.floor(min / 60);
+    const day = Math.floor(hour / 24);
+    const month = Math.floor(day / 30);
+    const year = Math.floor(month / 12);
+
+    if (year) return `${year}년 전`;
+    if (month) return `${month}달 전`;
+    if (day) return `${day}일 전`;
+    if (hour) return `${hour}시간 전`;
+    if (min) return `${min}분 전`;
+    if (sec) return `${sec}초 전`;
   };
 
   return (
@@ -38,7 +63,7 @@ export const Question = ({ id, title, content, accountNickName }) => {
             />
           </svg>
           <div className="text-blue-500 mx-2">{accountNickName}</div>
-          <div> asked 6 hours ago</div>
+          <div>{elapsedTime()}</div>
         </div>
       </div>
     </li>
