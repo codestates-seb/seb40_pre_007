@@ -17,16 +17,15 @@ export const LoginForm = () => {
   const [failedMsg, setFailedMsg] = useState("");
 
   // 유효성 검사 통과시 로그인 로직
-  const onValid = ({ email, password }) => {
-    // json-server 테스트시 => email
-    // 실제 서버 => username
-    const payload = { email, password };
+  const onValid = ({ email: username, password }) => {
+    const payload = { username, password };
 
     client
       .post("/api/login", JSON.stringify(payload))
       .then((res) => {
-        if (res.data.accessToken)
-          localStorage.setItem("accessToken", res.data.accessToken);
+        console.log(res.headers.get("Authorization"));
+        if (res.headers.get("Authorization"))
+          localStorage.setItem("accessToken", res.headers.get("Authorization"));
         setIsLogin(true);
         naviagte("/main");
         setFailedMsg("");
