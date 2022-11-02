@@ -12,12 +12,14 @@ import { useState, useEffect } from "react";
 export const Detail = () => {
   const { id } = useParams();
   const [userData, setUserData] = useState({});
+  const [answerList, setAnswerList] = useState([]);
 
   useEffect(() => {
     client
       .get(`/api/boards/${id}`)
       .then((res) => {
         setUserData(res.data.data);
+        setAnswerList(res.data.data.answerList);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -51,7 +53,11 @@ export const Detail = () => {
             <div className="box-border flex flex-col w-full h-full pt-3 lg:flex-row">
               <div className="flex flex-col w-full px-2">
                 <Contents userData={userData} setUserData={setUserData} />
-                <Answers />
+                <Answers
+                  answerList={answerList}
+                  setAnswerList={setAnswerList}
+                  id={userData.boardId}
+                />
               </div>
               <Sidebar />
             </div>
