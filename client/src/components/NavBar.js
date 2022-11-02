@@ -26,11 +26,18 @@ export const NavBar = () => {
   const onLogin = () => {
     naviagte("/");
   };
+
   // 로그아웃 버튼
   const onLogout = () => {
     setIsLogin(false);
     localStorage.removeItem("accessToken");
     naviagte("/main");
+  };
+
+  const confirmLogout = () => {
+    if (confirm("정말 로그아웃 하시겠습니까?")) {
+      onLogout();
+    }
   };
 
   return (
@@ -46,7 +53,7 @@ export const NavBar = () => {
         </div>
         {/* Icon : 모바일 */}
         <div className="flex shrink-0 justify-center items-center px-[8px] hover:bg-main-gray h-full cursor-pointer md:hidden ">
-          <Link to={"/"}>
+          <Link to={"/main"}>
             <img src={Icon} alt="" className="h-[35px]" />
           </Link>
         </div>
@@ -116,7 +123,7 @@ export const NavBar = () => {
             <div className="flex h-full">
               <NavBarBtns id="hi" />
             </div>
-            <SmallBtn bg={"button-blue"} onClick={onLogout}>
+            <SmallBtn bg={"button-blue"} onClick={confirmLogout}>
               Log out
             </SmallBtn>
           </>
