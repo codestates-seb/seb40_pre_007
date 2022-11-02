@@ -18,6 +18,15 @@ export const Main = () => {
     setUserData(response.data.data);
   };
 
+  const interestFilter = (e) => {
+    e.preventDefault();
+    const data = userData.slice();
+    data.sort((a, b) => {
+      return b.answerList.length - a.answerList.length;
+    });
+    setUserData(data);
+  };
+
   const askClick = (e) => {
     e.preventDefault();
     navigate(`/ask`);
@@ -81,6 +90,7 @@ export const Main = () => {
                 <button
                   className="inline-block p-2 text-gray-700 hover:bg-main-gray focus:bg-main-gray"
                   title="interest Product"
+                  onClick={interestFilter}
                 >
                   interest
                 </button>
