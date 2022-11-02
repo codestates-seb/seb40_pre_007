@@ -14,14 +14,9 @@ export const Ask = () => {
   const navigate = useNavigate();
   const editorRef = useRef(null);
 
-  // .post("/api/boards")
   const handleSubmit = () => {
     client
-      .post("/data", {
-        title: title,
-        content: content,
-        createdAt: new Date().toISOString(),
-      })
+      .post("/api/boards", { title, content })
       .then((res) => {
         console.log(res);
         navigate(`/main`);
@@ -31,7 +26,7 @@ export const Ask = () => {
       });
     console.log("submit");
   };
-
+  console.log(title, content);
   const handleEditorChange = useCallback(() => {
     if (!editorRef.current) return;
 
