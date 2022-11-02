@@ -54,8 +54,8 @@ public class BoardController {
 
     /// 전체 질문 게시글 조회
     @GetMapping
-    public ResponseEntity getBoards(@Positive @RequestParam int page,
-                                    @Positive @RequestParam int size) {
+    public ResponseEntity getBoards(@Positive @RequestParam(required = false, defaultValue = "1") int page,
+                                    @Positive @RequestParam(required = false, defaultValue = "10") int size) {
 
         Page<Board> pageBoards = boardService.findBoards(page - 1, size);
         List<Board> boards = pageBoards.getContent();
