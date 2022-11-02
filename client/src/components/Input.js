@@ -1,4 +1,3 @@
-
 /*
  * label : input에 표시할 label 이름입니다.
  * register : react-hook-form 으로 등록해주신 register 객체
@@ -28,7 +27,6 @@ export const Input = ({
             : "focus:border-main-blue focus:ring-blue-100 "
         }
         border rounded-md focus:outline-none focus:ring-4 border-input-border-gray py-1.5 px-3 w-full`}
-
         {...register}
       />
 
