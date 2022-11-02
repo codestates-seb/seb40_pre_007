@@ -4,6 +4,7 @@
       "id": "1",
       "title": "속보! 가형님 로그인 관련 jwt 토큰 검증 파트부분 완벽히 구현 완료.",
       "content": "사실입니까? 가형님은 백엔드 장인이십니까?",
+      "accountNickName": "I1E5",
       "boardStatus": "활성중",
       "createdAt": "2022-01-15T00:00:00.000Z",
       "votes": 4
@@ -12,6 +13,7 @@
       "id": "4",
       "title": "은비님 은비님 밸런스 게임 하시죠",
       "content": "눈 깜빡일때마다 까먹기 vs 숨 뱉을 때마다 까먹기",
+      "accountNickName": "I1E5",
       "boardStatus": "활성중",
       "createdAt": "2022-05-15T00:00:00.000Z",
       "votes": 1
@@ -20,6 +22,7 @@
       "id": "2",
       "title": "불태우고 계시는 혜정님의 열쩡 열쩡 열쩡",
       "content": "본받겠습니다.",
+      "accountNickName": "I1E5",
       "boardStatus": "활성중",
       "createdAt": "2022-03-15T00:00:00.000Z",
       "votes": 5
@@ -28,6 +31,7 @@
       "id": "3",
       "title": "속보! 소이님 보컬마스터",
       "content": "하도 자주 불러서 주변 친구들이 트라우마까지 걸린다고 전해져",
+      "accountNickName": "I1E5",
       "boardStatus": "활성중",
       "createdAt": "2022-04-15T00:00:00.000Z",
       "votes": 2
@@ -36,6 +40,7 @@
       "id": "8",
       "title": "sdfsdf",
       "content": "sdfsdfsdf",
+      "accountNickName": "I1E5",
       "createdAt": "2022-09-15T00:00:00.000Z",
       "votes": 8
     },
@@ -43,6 +48,7 @@
       "id": "5",
       "title": "경은님이 알려주신 오늘의 팁!",
       "content": "레몬 하나에는 무려 레몬 하나만큼의 비타민이 들어 있다!",
+      "accountNickName": "I1E5",
       "boardStatus": "활성중",
       "createdAt": "2022-06-15T00:00:00.000Z",
       "votes": 10
@@ -51,6 +57,7 @@
       "id": "6",
       "title": "두구두구",
       "content": "\n짜잔~",
+      "accountNickName": "I1E5",
       "createdAt": "2022-07-15T00:00:00.000Z",
       "votes": 5
     },
@@ -58,6 +65,7 @@
       "id": "7",
       "title": "12시네용",
       "content": "\n식사 맛있게 하세용",
+      "accountNickName": "I1E5",
       "createdAt": "2022-08-15T00:00:00.000Z",
       "votes": 7
     },
@@ -66,6 +74,7 @@
       "id": "9",
       "title": "4ㅅ ㅣ 28분!",
       "content": "\nㅏ하하하하하",
+      "accountNickName": "I1E5",
       "createdAt": "2022-11-01T07:28:56.609Z",
       "votes": 12
     }

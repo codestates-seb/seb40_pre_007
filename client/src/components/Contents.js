@@ -1,6 +1,28 @@
+// import { useState } from "react";
 import Logo from "../assets/Stack_Overflow-Icon.png";
+import { client } from "../client/client";
+import { useNavigate } from "react-router-dom";
 
-export const Contents = () => {
+//setUserData
+export const Contents = ({ userData }) => {
+  const navigate = useNavigate();
+
+  // const [vote, setVote] = useState(data.evaluation);
+  // const headers = {
+  //   "Content-Type": "application/json",
+  //   Authorization: "Bearer { jwt 토큰 값}",
+  // };
+
+  const handleDelete = () => {
+    client
+      .delete(`/data/${userData.id}`)
+      .then(() => {
+        console.log("deleted successfully!");
+        navigate(`/main`);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <section className="flex w-full">
       {/* 추천 Button */}
@@ -11,6 +33,7 @@ export const Contents = () => {
             viewBox="0 0 24 24"
             fill="#b5bfc4"
             className="w-10 h-10 cursor-pointer"
+            // onClick={console.log(vote)}
           >
             <path
               fillRule="evenodd"
@@ -20,7 +43,7 @@ export const Contents = () => {
           </svg>
 
           <span className="text-2xl font-medium text-center text-dark-gray">
-            0
+            {userData.votes}
           </span>
 
           <svg
@@ -67,15 +90,9 @@ export const Contents = () => {
         </svg>
       </div>
       {/* 질문*/}
-      <div className="pl-1 mt-2">
-        <p className="text-base">
-          I am writing a multi-platform App using Net Maui. The app may produce
-          an MsWord file if requested by the user. I know how to check if MsWord
-          is installed on most OSes, except in IOS. How do I find out if MsWord
-          is installed on IOS?
-          <br />
-          <br />I cannot find any information on this problem.
-        </p>
+      <div className="w-full pl-1 mt-2">
+        <p className="text-base">{userData.content}</p>
+
         {/* 태그 */}
         <div className="mt-4 mb-10 space-x-2">
           <span className="px-2 py-1 rounded cursor-pointer text-button-border-blue bg-tag-blue">
@@ -96,6 +113,16 @@ export const Contents = () => {
             <button type="button" className="cursor-pointer">
               Share
             </button>
+            <button onClick="" type="button" className="cursor-pointer">
+              Edit
+            </button>
+            <button
+              onClick={handleDelete}
+              type="button"
+              className="cursor-pointer"
+            >
+              Delete
+            </button>
             <button type="button" className="cursor-pointer">
               Follow
             </button>
@@ -114,7 +141,8 @@ export const Contents = () => {
 
               <div className="flex flex-col justify-center ml-3 space-y-1">
                 <strong className="font-normal cursor-pointer text-deep-blue">
-                  Paul Mariotti
+                  {/* Paul Mariotti */}
+                  {userData.accountNickName}
                 </strong>
 
                 <div className="flex space-x-2">
