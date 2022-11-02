@@ -102,6 +102,7 @@ export const Main = () => {
               {userData.map((data, i) => {
                 return (
                   <Question
+                    accountNickName={data.accountNickName}
                     key={i}
                     id={data.boardId}
                     title={data.title}

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 
-export const Question = ({ id, title, content }) => {
+export const Question = ({ id, title, content, accountNickName }) => {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -37,7 +37,7 @@ export const Question = ({ id, title, content }) => {
               d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
             />
           </svg>
-          <div className="text-blue-500 mx-2">seunghwan</div>
+          <div className="text-blue-500 mx-2">{accountNickName}</div>
           <div> asked 6 hours ago</div>
         </div>
       </div>
