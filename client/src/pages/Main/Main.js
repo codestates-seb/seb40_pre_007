@@ -131,6 +131,7 @@ export const Main = () => {
                     content={data.content}
                     boardStatus={data.boardStatus}
                     createdAt={data.createdAt}
+                    answerCount={data.answerList.length}
                   />
                 );
               })}
