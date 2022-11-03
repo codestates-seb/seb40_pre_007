@@ -14,7 +14,18 @@ export const Main = () => {
 
   const getUserData = async () => {
     const response = await client.get("/api/boards?page=1");
+
     setUserData(response.data.data);
+  };
+  console.log(userData);
+
+  const interestFilter = (e) => {
+    e.preventDefault();
+    const data = userData.slice();
+    data.sort((a, b) => {
+      return b.answerList.length - a.answerList.length;
+    });
+    setUserData(data);
   };
 
   const askClick = (e) => {
@@ -41,15 +52,6 @@ export const Main = () => {
     const data = userData.slice();
     data.sort((a, b) => {
       return a.createdAt.localeCompare(b.createdAt);
-    });
-    setUserData(data);
-  };
-
-  const votesFilter = (e) => {
-    e.preventDefault();
-    const data = userData.slice();
-    data.sort((a, b) => {
-      return b.votes - a.votes;
     });
     setUserData(data);
   };
@@ -89,30 +91,24 @@ export const Main = () => {
                 <button
                   className="inline-block p-2 text-gray-700 hover:bg-main-gray focus:bg-main-gray"
                   title="interest Product"
+                  onClick={interestFilter}
                 >
                   interest
-                </button>
-
-                <button
-                  className="inline-block p-2 text-gray-700 hover:bg-main-gray focus:bg-main-gray"
-                  title="votes Product"
-                  onClick={votesFilter}
-                >
-                  votes
                 </button>
               </span>
             </div>
 
             <ul className="pr-6 divide-y divide-line-gray pb-80">
-              {userData.map((data) => {
+              {userData.map((data, i) => {
                 return (
                   <Question
-                    key={data.id}
+                    accountNickName={data.accountNickName}
+                    key={i}
                     id={data.boardId}
                     title={data.title}
                     content={data.content}
                     boardStatus={data.boardStatus}
-                    votes={data.votes}
+                    createdAt={data.createdAt}
                   />
                 );
               })}
