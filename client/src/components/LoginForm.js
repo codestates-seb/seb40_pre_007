@@ -23,8 +23,10 @@ export const LoginForm = () => {
     client
       .post("/api/login", JSON.stringify(payload))
       .then((res) => {
-        if (res.headers.get("Authorization"))
+        if (res.headers.get("Authorization")) {
           localStorage.setItem("accessToken", res.headers.get("Authorization"));
+          localStorage.setItem("userName", res.data.displayName);
+        }
         setIsLogin(true);
         naviagte("/main");
         setFailedMsg("");
