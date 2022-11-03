@@ -70,7 +70,7 @@ export const Main = () => {
               </LargeBtn>
             </div>
             <div className="flex items-center justify-between p-6">
-              <div className="text-lg">777 questions</div>
+              <div className="text-lg">{userData.length} questions</div>
 
               <span className="inline-flex overflow-hidden bg-white border divide-x rounded-md shadow-sm divide-dark-gray border-dark-gray">
                 <button
