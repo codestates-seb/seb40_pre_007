@@ -19,7 +19,7 @@ export const Ask = () => {
       .post("/api/boards", { title, content })
       .then((res) => {
         console.log(res);
-        navigate(`/main`);
+        navigate(`/`);
       })
       .catch((err) => {
         console.log(err);

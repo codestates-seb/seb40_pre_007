@@ -14,7 +14,7 @@ export const Login = () => {
   // 로그인 된 상태일 경우 로그인 페이지 접근 금지
   const navigator = useNavigate();
   useEffect(() => {
-    if (isLogin) navigator("/main");
+    if (isLogin) navigator("/");
   }, []);
 
   return (

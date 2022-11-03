@@ -1,6 +1,6 @@
 import Logo from "../assets/Stack_Overflow-Logo.png";
 import Icon from "../assets/Stack_Overflow-Icon.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { SerchBarMobile, SearchBarDesktop } from "./SearchBar";
 import { makeClassName } from "../libs/makeClassName";
@@ -9,8 +9,6 @@ import { SmallBtn } from "./Buttons";
 
 import { useRecoilState } from "recoil";
 import { isLoginState } from "../recoil/atoms";
-
-import { useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
   // searchBar 드롭다운 관련 상태
@@ -24,7 +22,7 @@ export const NavBar = () => {
 
   // 로그인 버튼 : 로그인 페이지로 이동
   const onLogin = () => {
-    naviagte("/");
+    naviagte("/login");
   };
 
   // 로그아웃 버튼
@@ -32,7 +30,7 @@ export const NavBar = () => {
     setIsLogin(false);
     localStorage.removeItem("accessToken");
     localStorage.removeItem("userName");
-    naviagte("/main");
+    naviagte("/");
   };
 
   const confirmLogout = () => {
@@ -54,13 +52,13 @@ export const NavBar = () => {
         </div>
         {/* Icon : 모바일 */}
         <div className="flex shrink-0 justify-center items-center px-[8px] hover:bg-main-gray h-full cursor-pointer md:hidden ">
-          <Link to={"/main"}>
+          <Link to={"/"}>
             <img src={Icon} alt="" className="h-[35px]" />
           </Link>
         </div>
         {/* Logo : 데스크탑 */}
         <div className="justify-center items-center px-[8px] hover:bg-main-gray h-full cursor-pointer hidden md:flex">
-          <Link to={"/main"}>
+          <Link to={"/"}>
             <img src={Logo} alt="" className="w-[150px] h-[30px]" />
           </Link>
         </div>
