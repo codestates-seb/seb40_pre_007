@@ -28,7 +28,7 @@ export const LoginForm = () => {
           localStorage.setItem("userName", res.data.displayName);
         }
         setIsLogin(true);
-        naviagte("/main");
+        naviagte("/");
         setFailedMsg("");
       })
       .catch((err) => {
