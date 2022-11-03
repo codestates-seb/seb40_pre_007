@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.7.5'
 	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+	id "org.asciidoctor.jvm.convert" version "3.3.2"
 	id 'java'
 }
 
@@ -16,6 +17,14 @@ configurations {
 
 repositories {
 	mavenCentral()
+}
+
+ext {
+	set('snippetsDir', file("build/generated-snippets"))
+}
+
+configurations {
+	asciidoctorExtensions
 }
 
 dependencies {
@@ -44,8 +53,31 @@ dependencies {
 	// gson
 	implementation group: 'com.google.code.gson', name: 'gson'
 
+	// REST DOCS 관련
+	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+	asciidoctorExtensions 'org.springframework.restdocs:spring-restdocs-asciidoctor'
+
 }
 
 tasks.named('test') {
+	outputs.dir snippetsDir
 	useJUnitPlatform()
+}
+
+task copyDocument(type: Copy) {
+	dependsOn asciidoctor            // :asciidoctor task 가 실행된 후에 task 가 실행되도록 의존성 설정
+	from file("${asciidoctor.outputDir}")   // "/build/docs/asciidoc/" 경로에 생성되는 index.html 을 복사하여
+	into file("src/main/resources/static/docs")   // "src/main/resources/static/docs" 경로로 index.html 을 추가
+}
+
+build {
+	dependsOn copyDocument  // :build task 가 실행되기 전에, :copyDocument task 가 먼저 수행되도록 한다.
+}
+
+// :bootJar task 설정
+bootJar {
+	dependsOn copyDocument    // :bootJar task 실행 전에 :copyDocument task 가 먼저 실행되도록 의존성 설정
+	from ("${asciidoctor.outputDir}") {  // Asciidoctor 실행으로 생성되는 index.html 파일을 jar 안에 추가
+		into 'static/docs'
+	}
 }
