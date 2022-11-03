@@ -9,3 +9,8 @@ export const accessTokenState = atom({
   key: "accessToken",
   default: localStorage.getItem("accessToken") || "",
 });
+
+export const userNameState = atom({
+  key: "userName",
+  default: localStorage.getItem("userName") || "",
+});
