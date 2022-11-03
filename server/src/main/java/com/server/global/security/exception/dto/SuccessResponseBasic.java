@@ -9,4 +9,5 @@ public class SuccessResponseBasic {
     private int state;
     private String successMessage;
     private String message;
+    private String displayName;
 }
