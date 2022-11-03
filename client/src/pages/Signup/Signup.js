@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 
 export const Signup = () => {
   return (
-    <div className="h-screen w-screen bg-main-gray flex justify-center items-center">
+    <div className="bg-main-gray flex w-screen h-screen items-center justify-center">
       <NavBar />
       {/* 좌측 리스트 */}
-      <div className="hidden md:flex mx-10 space-y-8 flex-col">
-        <span className="text-3xl ">Join the Stack Overflow community</span>
+      <div className="hidden md:flex mx-[60px] space-y-8 flex-col">
+        <span className="text-3xl">Join the Stack Overflow community</span>
         <ul className="space-y-8">
           <li className="flex space-x-2">
             <svg
@@ -89,7 +89,8 @@ export const Signup = () => {
           </p>
         </div>
       </div>
-      <div className="flex-col flex items-center justify-center">
+      {/* 회원가입 form */}
+      <div className="flex-col flex items-center justify-center h-full pt-10">
         <div className="w-[400px] mb-5 md:hidden">
           <span className="text-2xl">
             Create Your Stack Overflow account. It’s free and only takes a
@@ -97,7 +98,7 @@ export const Signup = () => {
           </span>
         </div>
         <SignupForm />
-        <div className="flex space-x-2 mt-10 text-sm">
+        <div className="flex space-x-2 mt-8 text-sm">
           <span>{`Already have an account?`}</span>
           <Link to={"/"}>
             <span className="text-main-blue"> Log in</span>

@@ -28,7 +28,6 @@ export const SignupForm = () => {
       });
   };
 
-  console.log(failedMsg);
   // 유효성 검사 실패시 input 클래스 변경 로직
   const onInValid = (error) => {
     setErrorMsg(error);
