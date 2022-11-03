@@ -5,8 +5,8 @@ import { BaseEditor } from "./BaseEditor";
 import { useCallback, useRef, useState } from "react";
 import { client } from "../client/client";
 import { useRecoilValue } from "recoil";
-import { userNameState } from "../recoil/atoms";
-import { isLoginState } from "../recoil/atoms";
+import { userNameState, isLoginState } from "../recoil/atoms";
+import { ElapsedTime } from "./ElapsedTime";
 
 export const Answers = ({ answerList, id }) => {
   const answerCount = answerList.length;
@@ -140,7 +140,9 @@ export const Answers = ({ answerList, id }) => {
                       Delete
                     </button>
                   </div>
-                ) : null}
+                ) : (
+                  <div />
+                )}
 
                 {/* Writer info */}
                 <div className="pl-2 text-[12px] rounded w-[200px] space-y-2">
@@ -155,6 +157,9 @@ export const Answers = ({ answerList, id }) => {
                       <strong className="font-normal cursor-pointer text-deep-blue">
                         {el.accountNickName}
                       </strong>
+                      <span className="text-font-gray">
+                        작성 시간 : {ElapsedTime(el.updatedAt)}{" "}
+                      </span>
                     </div>
                   </div>
                 </div>
