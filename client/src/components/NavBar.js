@@ -31,6 +31,7 @@ export const NavBar = () => {
   const onLogout = () => {
     setIsLogin(false);
     localStorage.removeItem("accessToken");
+    localStorage.removeItem("userName");
     naviagte("/main");
   };
 

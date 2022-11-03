@@ -1,14 +1,17 @@
 import Logo from "../assets/Stack_Overflow-Icon.png";
 import { SmallBtn } from "./Buttons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BaseEditor } from "./BaseEditor";
 import { useCallback, useRef, useState } from "react";
 import { client } from "../client/client";
 import { useRecoilValue } from "recoil";
-import { userNameState } from "../recoil/atoms";
+import { userNameState, isLoginState } from "../recoil/atoms";
+import { ElapsedTime } from "./ElapsedTime";
 
 export const Answers = ({ answerList, id }) => {
   const answerCount = answerList.length;
+  const isLogin = useRecoilValue(isLoginState);
+  const navigate = useNavigate();
 
   // 답변 생성
   const [content, setContent] = useState("");
@@ -26,7 +29,15 @@ export const Answers = ({ answerList, id }) => {
       .then(() => {
         location.reload();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        if (!isLogin) {
+          alert("로그인이 필요한 서비스 입니다.");
+          navigate("/");
+        } else {
+          alert("입력된 내용을 확인해주세요!");
+        }
+      });
   };
 
   // 답변 수정
@@ -56,8 +67,8 @@ export const Answers = ({ answerList, id }) => {
         location.reload();
       })
       .catch((err) => {
-        alert("올바르지 않은 접근입니다. 내용을 확인해주세요!");
         console.error(err);
+        alert("올바르지 않은 접근입니다. 내용을 확인해주세요!");
       });
   };
 
@@ -129,7 +140,9 @@ export const Answers = ({ answerList, id }) => {
                       Delete
                     </button>
                   </div>
-                ) : null}
+                ) : (
+                  <div />
+                )}
 
                 {/* Writer info */}
                 <div className="pl-2 text-[12px] rounded w-[200px] space-y-2">
@@ -144,6 +157,9 @@ export const Answers = ({ answerList, id }) => {
                       <strong className="font-normal cursor-pointer text-deep-blue">
                         {el.accountNickName}
                       </strong>
+                      <span className="text-font-gray">
+                        작성 시간 : {ElapsedTime(el.updatedAt)}{" "}
+                      </span>
                     </div>
                   </div>
                 </div>
