@@ -10,14 +10,22 @@ import { useNavigate } from "react-router-dom";
 
 export const Main = () => {
   const [userData, setUserData] = useState([]);
+  const [pageData, setPageData] = useState({
+    totalPages: 0,
+    totalElements: 0,
+  });
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
   const getUserData = async () => {
-    const response = await client.get("/api/boards?page=1");
+    const response = await client.get(`/api/boards?page=${page}`);
 
+    setPageData({
+      totalPages: response.data.pageInfo.totalPages,
+      totalElements: response.data.pageInfo.totalElements,
+    });
     setUserData(response.data.data);
   };
-  console.log(userData);
 
   const interestFilter = (e) => {
     e.preventDefault();
@@ -35,7 +43,7 @@ export const Main = () => {
 
   useEffect(() => {
     getUserData();
-  }, []);
+  }, [page]);
 
   const NewestFilter = (e) => {
     e.preventDefault();
@@ -56,6 +64,12 @@ export const Main = () => {
     setUserData(data);
   };
 
+  const checkPageClick = (data) => {
+    if (page + data > 0 && page + data <= pageData.totalPages) {
+      setPage(page + data);
+    }
+  };
+
   return (
     <div className="flex flex-col w-screen h-screen">
       <NavBar />
@@ -70,7 +84,7 @@ export const Main = () => {
               </LargeBtn>
             </div>
             <div className="flex items-center justify-between p-6">
-              <div className="text-lg">{userData.length} questions</div>
+              <div className="text-lg">{pageData.totalElements} questions</div>
 
               <span className="inline-flex overflow-hidden bg-white border divide-x rounded-md shadow-sm divide-dark-gray border-dark-gray">
                 <button
@@ -112,6 +126,42 @@ export const Main = () => {
                   />
                 );
               })}
+
+              <nav
+                className="isolate -space-x-px rounded-md p-5"
+                aria-label="Pagination"
+              >
+                <button
+                  className="relative inline-flex items-center rounded-l-md border border-gray-300 
+                           bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+                  onClick={() => checkPageClick(-1)}
+                >
+                  Previous
+                </button>
+
+                {[...Array(parseInt(pageData.totalPages))].map((n, index) => {
+                  return (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        setPage(index + 1);
+                      }}
+                      className="relative hidden items-center border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20 md:inline-flex
+                  focus:bg-indigo-50 focus:font-medium focus:text-indigo-600
+                  "
+                    >
+                      {index + 1}
+                    </button>
+                  );
+                })}
+
+                <button
+                  className="relative inline-flex items-center rounded-r-md border border-gray-300 bg-white px-2 py-2 text-sm font-medium text-gray-500 hover:bg-gray-50 focus:z-20"
+                  onClick={() => checkPageClick(1)}
+                >
+                  Next
+                </button>
+              </nav>
             </ul>
           </div>
           <Sidebar />
