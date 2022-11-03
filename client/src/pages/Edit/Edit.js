@@ -15,7 +15,6 @@ export const Edit = () => {
   const navigate = useNavigate();
   const editorRef = useRef(null);
 
-  console.log(state.boardId);
   const handleEditSubmit = () => {
     client
       .patch(`/api/boards/${state.boardId}`, {
@@ -37,7 +36,7 @@ export const Edit = () => {
 
     setContent(editorRef.current.getInstance().getMarkdown());
   }, []);
-  console.log(editorRef);
+
   return (
     <div className="flex flex-col w-screen h-screen">
       <NavBar />

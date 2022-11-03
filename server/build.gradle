@@ -53,7 +53,8 @@ dependencies {
 	// gson
 	implementation group: 'com.google.code.gson', name: 'gson'
 
-	// REST DOCS 관련
+	// test 및 REST DOCS 관련
+	testImplementation 'com.h2database:h2:1.4.199'
 	testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
 	asciidoctorExtensions 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 

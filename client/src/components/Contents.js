@@ -1,17 +1,23 @@
-// import { useState } from "react";
+import { useState } from "react";
 import Logo from "../assets/Stack_Overflow-Icon.png";
 import { client } from "../client/client";
 import { useNavigate } from "react-router-dom";
+import { useRecoilValue } from "recoil";
+import { userNameState } from "../recoil/atoms";
+import { ElapsedTime } from "./ElapsedTime";
 
 //setUserData
 export const Contents = ({ userData }) => {
   const navigate = useNavigate();
+  const [vote, setVote] = useState(0);
 
-  // const [vote, setVote] = useState(data.evaluation);
-  // const headers = {
-  //   "Content-Type": "application/json",
-  //   Authorization: "Bearer { jwt 토큰 값}",
-  // };
+  const userName = useRecoilValue(userNameState);
+  const writer = userData.accountNickName;
+  const date = userData.createdAt;
+
+  const isWriter = () => {
+    return userName === writer ? true : false;
+  };
 
   const handleEdit = () => {
     navigate("/edit", { state: userData });
@@ -27,6 +33,14 @@ export const Contents = ({ userData }) => {
       .catch((err) => console.log(err));
   };
 
+  const handleVoteUp = () => {
+    setVote(vote + 1);
+  };
+
+  const handleVoteDown = () => {
+    vote > 0 ? setVote(vote - 1) : setVote(0);
+  };
+
   return (
     <section className="flex w-full">
       {/* 추천 Button */}
@@ -37,7 +51,7 @@ export const Contents = ({ userData }) => {
             viewBox="0 0 24 24"
             fill="#b5bfc4"
             className="w-10 h-10 cursor-pointer"
-            // onClick={console.log(vote)}
+            onClick={handleVoteUp}
           >
             <path
               fillRule="evenodd"
@@ -47,7 +61,7 @@ export const Contents = ({ userData }) => {
           </svg>
 
           <span className="text-2xl font-medium text-center text-dark-gray">
-            {userData.votes}
+            {vote}
           </span>
 
           <svg
@@ -55,6 +69,7 @@ export const Contents = ({ userData }) => {
             viewBox="0 0 24 24"
             fill="#b5bfc4"
             className="w-10 h-10 cursor-pointer"
+            onClick={handleVoteDown}
           >
             <path
               fillRule="evenodd"
@@ -93,6 +108,7 @@ export const Contents = ({ userData }) => {
           />
         </svg>
       </div>
+
       {/* 질문*/}
       <div className="w-full pl-1 mt-2">
         <p className="text-base">{userData.content}</p>
@@ -120,14 +136,14 @@ export const Contents = ({ userData }) => {
             <button
               onClick={handleEdit}
               type="button"
-              className="cursor-pointer"
+              className={"cursor-pointer" + (!isWriter() ? " hidden" : null)}
             >
               Edit
             </button>
             <button
               onClick={handleDelete}
               type="button"
-              className="cursor-pointer"
+              className={"cursor-pointer" + (!isWriter() ? " hidden" : null)}
             >
               Delete
             </button>
@@ -138,7 +154,7 @@ export const Contents = ({ userData }) => {
 
           {/* Writer info */}
           <div className="p-2 text-[12px] rounded bg-tag-blue w-[200px] space-y-2">
-            <span className="text-font-gray">asked 1 min ago</span>
+            <span className="ml-1 text-font-gray">{ElapsedTime(date)}</span>
 
             <div className="flex">
               <img

@@ -59,7 +59,7 @@ export const NavBar = () => {
         </div>
         {/* Logo : 데스크탑 */}
         <div className="justify-center items-center px-[8px] hover:bg-main-gray h-full cursor-pointer hidden md:flex">
-          <Link to={"/"}>
+          <Link to={"/main"}>
             <img src={Logo} alt="" className="w-[150px] h-[30px]" />
           </Link>
         </div>
