@@ -10,7 +10,9 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+/*
+   데이터 액세스 계층을 테스트, AccountRepository 기능을 정상적으로 사용하기 위한 configuration 을 Spring 이 자동으로 해준다.
+ */
 @DataJpaTest
 public class AccountRepositoryTest {
 
