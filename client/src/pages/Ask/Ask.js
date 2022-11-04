@@ -17,14 +17,12 @@ export const Ask = () => {
   const handleSubmit = () => {
     client
       .post("/api/boards", { title, content })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         navigate(`/`);
       })
       .catch((err) => {
         console.log(err);
       });
-    console.log("submit");
   };
   console.log(title, content);
   const handleEditorChange = useCallback(() => {
@@ -32,7 +30,6 @@ export const Ask = () => {
 
     setContent(editorRef.current.getInstance().getMarkdown());
   }, []);
-  console.log(editorRef);
   return (
     <div className="flex flex-col h-screen w-screen">
       <NavBar />
