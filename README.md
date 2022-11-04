@@ -61,10 +61,34 @@ CRUD를 기반으로 아래와 같은 기능 구현을 목표로 하였습니다
 ### 💻 Backend
 
 <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> <img src="https://img.shields.io/badge/spring boot-6DB33F?style=for-the-badge&logo=spring boot&logoColor=white"> <img src="https://img.shields.io/badge/Spring Data JPA-6DB33F?style=for-the-badge&logo=Spring Data JPA&logoColor=white"> <img src="https://img.shields.io/badge/Spring Security-6DB33F?style=for-the-badge&logo=Spring Security&logoColor=white"> <img src="https://img.shields.io/badge/Spring Validation-6DB33F?style=for-the-badge&logo=Spring Validation&logoColor=white"> <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white"> <img src="https://img.shields.io/badge/LOMBOK-FF5722?style=for-the-badge&logo=LOMBOK&logoColor=white"> <img src="https://img.shields.io/badge/gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white">  
+
+### 라이브러리 버젼
+
+#### 🎨 Frontend
+- react 18.2.0
+- react-router-dom v6
+- react-hook-form 7.38.0
+- toast-ui/react-editor 3.2.2
+- toast-ui/editor-plugin-code-syntax-highlight 3.1.0
+- tailwindcss 3.2.1
+
+#### 💻 Backend
+- java 11.0.x
+- Spring boot 2.7.5
+- Spring Security 5.7.4
+- Spring Data JPA 2.7.5
+- mysql 8.0.28
+
 ### 🖋 Collaboration Tools
 
 <img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white"> <img src="https://img.shields.io/badge/git-F05032?style=for-the-badge&logo=git&logoColor=white"> <img src="https://img.shields.io/badge/notion-000000?style=for-the-badge&logo=notion&logoColor=white">  <img src="https://img.shields.io/badge/discord-5865F2?style=for-the-badge&logo=discord&logoColor=white"> <img src="https://img.shields.io/badge/figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white"> 
 <br></br>
+
+## 🏡 Project Architecture
+![image](https://user-images.githubusercontent.com/70190106/199959412-1a93a4f6-2c01-4f77-a3ad-b137aa65e2ab.png) 
+<br></br>
+
+
 
 ## ✏️ Commit Convention
 
