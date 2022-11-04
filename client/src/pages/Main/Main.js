@@ -120,7 +120,7 @@ export const Main = () => {
               </span>
             </div>
 
-            <ul className="pr-6 divide-y divide-line-gray pb-80">
+            <ul className="pr-6 divide-y divide-line-gray pb-20">
               {userData.map((data, i) => {
                 return (
                   <Question
