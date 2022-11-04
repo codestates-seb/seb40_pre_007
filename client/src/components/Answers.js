@@ -27,7 +27,7 @@ export const Answers = ({ answerList, id }) => {
         content,
       })
       .then(() => {
-        location.reload();
+        window.location.reload();
       })
       .catch((err) => {
         console.error(err);
@@ -64,7 +64,7 @@ export const Answers = ({ answerList, id }) => {
       .then((res) => {
         console.log(res);
         setIsEdit(false);
-        location.reload();
+        window.location.reload();
       })
       .catch((err) => {
         console.error(err);
@@ -83,7 +83,7 @@ export const Answers = ({ answerList, id }) => {
     client
       .delete(`/api/answers/${answerId}`, {})
       .then(() => {
-        location.reload();
+        window.location.reload();
       })
       .catch((err) => {
         console.error(err);

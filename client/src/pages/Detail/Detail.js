@@ -5,7 +5,7 @@ import { Contents } from "../../components/Contents";
 import { Sidebar } from "../../components/Sidebar";
 import { Footer } from "../../components/Footer";
 import { Answers } from "../../components/Answers";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { client } from "../../client/client";
 import { useState, useEffect } from "react";
 
@@ -35,7 +35,9 @@ export const Detail = () => {
             <div className="pb-6 space-y-6 border-b">
               <div className="flex justify-between">
                 <div className="mr-5 text-3xl">{userData.title}</div>
-                <SmallBtn>Ask Questions</SmallBtn>
+                <Link to={"/ask"}>
+                  <SmallBtn>Ask Questions</SmallBtn>
+                </Link>
               </div>
 
               <div className="flex items-center justify-between">
