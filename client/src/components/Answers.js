@@ -27,6 +27,7 @@ export const Answers = ({ answerList, id }) => {
         content,
       })
       .then(() => {
+        navigate(`/${id}`);
         window.location.reload();
       })
       .catch((err) => {

@@ -58,7 +58,7 @@ export const Detail = () => {
                 <Answers
                   answerList={answerList}
                   setAnswerList={setAnswerList}
-                  id={userData.boardId}
+                  id={id}
                 />
               </div>
               <Sidebar />

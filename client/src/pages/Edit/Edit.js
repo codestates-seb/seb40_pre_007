@@ -21,8 +21,7 @@ export const Edit = () => {
         title: title,
         content: content,
       })
-      .then((res) => {
-        console.log(res, state.boardId);
+      .then(() => {
         navigate(`/${state.boardId}`);
       })
       .catch((err) => {
