@@ -24,13 +24,15 @@ export const Contents = ({ userData }) => {
   };
 
   const handleDelete = () => {
-    client
-      .delete(`/api/boards/${userData.boardId}`)
-      .then(() => {
-        alert("성공적으로 삭제되었습니다!");
-        navigate(`/`);
-      })
-      .catch((err) => console.log(err));
+    if (confirm("정말 삭제하시겠습니까?")) {
+      client
+        .delete(`/api/boards/${userData.boardId}`)
+        .then(() => {
+          alert("성공적으로 삭제되었습니다!");
+          navigate(`/`);
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   const handleVoteUp = () => {
