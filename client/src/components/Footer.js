@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 
 export const Footer = () => {
   return (
-    <footer className=" bg-[#232629] w-screen h-screen text-[#9199A1] px-8 md:flex lg:justify-center">
+    <footer className=" bg-[#232629] w-screen h-screen text-[#9199A1] px-8 md:flex md:flex-col lg:flex-row lg:justify-center">
       {/* Logo */}
-      <div className="mt-4 md:mt-8 md:mr-4 lg:mr-8">
+      <div className="hidden md:mt-8 md:mr-4 md:block lg:mr-8">
         <Link to={"/"}>
           <img
             src={LogoIcon}
