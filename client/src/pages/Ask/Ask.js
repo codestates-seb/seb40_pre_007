@@ -24,7 +24,6 @@ export const Ask = () => {
         console.log(err);
       });
   };
-  console.log(title, content);
   const handleEditorChange = useCallback(() => {
     if (!editorRef.current) return;
 

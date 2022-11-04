@@ -61,8 +61,7 @@ export const Answers = ({ answerList, id }) => {
       .patch(`/api/answers/${editId}`, {
         content: editContent,
       })
-      .then((res) => {
-        console.log(res);
+      .then(() => {
         setIsEdit(false);
         navigate(0);
       })

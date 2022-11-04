@@ -27,7 +27,6 @@ export const Edit = () => {
       .catch((err) => {
         console.log(err);
       });
-    console.log("submit");
   };
 
   const handleEditorChange = useCallback(() => {
