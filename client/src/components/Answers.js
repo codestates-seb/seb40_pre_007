@@ -27,14 +27,13 @@ export const Answers = ({ answerList, id }) => {
         content,
       })
       .then(() => {
-        navigate(`/${id}`);
-        window.location.reload();
+        navigate(0);
       })
       .catch((err) => {
         console.error(err);
         if (!isLogin) {
           alert("로그인이 필요한 서비스 입니다.");
-          navigate("/");
+          navigate("/login");
         } else {
           alert("입력된 내용을 확인해주세요!");
         }
@@ -65,7 +64,7 @@ export const Answers = ({ answerList, id }) => {
       .then((res) => {
         console.log(res);
         setIsEdit(false);
-        window.location.reload();
+        navigate(0);
       })
       .catch((err) => {
         console.error(err);
@@ -84,7 +83,7 @@ export const Answers = ({ answerList, id }) => {
     client
       .delete(`/api/answers/${answerId}`, {})
       .then(() => {
-        window.location.reload();
+        navigate(0);
       })
       .catch((err) => {
         console.error(err);
@@ -92,7 +91,7 @@ export const Answers = ({ answerList, id }) => {
       });
   };
 
-  // 수정, 삭제 접근 버튼
+  // 유저 데이터
   const currentUser = useRecoilValue(userNameState);
 
   return (
