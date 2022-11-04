@@ -48,10 +48,24 @@ CRUD를 기반으로 아래와 같은 기능 구현을 목표로 하였습니다
 |                                                                                    박혜정 (FE 팀장)                                                                                     |                              김승환 (FE 리더)                              |                                 유은비(FE)                                  |                              이가형 (BE 리더)                               |                                                                  정경은 (BE)                                                                  |                                                         정소이 (BE)                                                          |
 | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------: |
 | <img src="https://img1.daumcdn.net/thumb/C428x428/?scode=mtistory2&fname=https%3A%2F%2Ftistory3.daumcdn.net%2Ftistory%2F2789392%2Fattach%2F89a134f7779942a5853a8ce6f61c9475" width=150> | <img src='https://avatars.githubusercontent.com/u/70190106?v=4' width=150> | <img src="https://avatars.githubusercontent.com/u/71588080?v=4" width=150 > | <img src='https://avatars.githubusercontent.com/u/101054381?v=4' width=150> | <img src='https://cdn.discordapp.com/attachments/1032532506471313482/1037997962074267658/4B2703F5-7A9B-49B8-88A7-620BE1A540A4.jpg' width=150> | <img src='https://cdn.discordapp.com/attachments/1032532506471313482/1037997677444599828/IMG_3FDC2AACB09F-1.jpeg' width=150> |
-|                                                                         [@hyejj19](https://github.com/hyejj19)                                                                          |                   [@seunghw](https://github.com/seunghw)                   |              [@rachelyu1025](https://github.com/rachelyu1025)               |                 [@hyeongiii](https://github.com/hyeongiii)                  |                                                    [@bbororo](https://github.com/bbororo)                                                     |                                           [@JungSoyi](https://github.com/JungSoyi)                                           |    
+|                                                                         [@hyejj19](https://github.com/hyejj19)                                                                          |                   [@seunghw](https://github.com/seunghw)                   |              [@rachelyu1025](https://github.com/rachelyu1025)               |                 [@hyeongiii](https://github.com/hyeongiii)                  |                                                    [@bbororo](https://github.com/bbororo)                                                     |                                           [@JungSoyi](https://github.com/JungSoyi)                                           |     
+##  ⏰ Team rules
+### 데일리 스크럼
 
- 
- 
+- 공통 데일리 스크럼: 10:00 ~ 10:30  => 💻회의실
+- FE/BE 데일리 스크럼: 10:30 ~ 11:00  =>  💛FE 회의실 &  💜BE 회의실
+- 필수 온라인 타임 & 모각코타임: 13:00 ~ 17:00  => 🔥모각코 채널
+- 마무리 미팅 : 17:00 ~ 17:30 =>  💻회의실 
+
+### 공통 규칙
+- [x] 밤샘 절대 금지 : 아침에 일어나고, 밤에 자는 루틴을 유지해주세요. 건강 지켜~~~
+- [x] 오버커뮤니케이션 지향
+- [x] 메시지 확인했다면 대답 혹은 이모지 등 꼭 남겨주기!
+- [x] 모르는 부분, 막히는 부분은 바로 공유하기!
+- [x] 의견은 명확하게 제시하기, 피드백은 친절하고 상냥하게😉
+- [x] 외출, 자리비움 일정은 일정-공유 채널에 미리 공유하기
+- [x] 껄끄러운 말 해야할 것 같을때 용용체 사용하기 ex)이건 좀 아쉽네용~ 
+    
  <br></br>
 ## 🛠 Tech Stacks 
 
